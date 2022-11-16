@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "482930462579",
+    "project_id": "feasti-chef",
+    "storage_bucket": "feasti-chef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482930462579:android:b1cdb755fa264cccceff06",
+        "android_client_info": {
+          "package_name": "com.feasti.feastichef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482930462579-v6h801jkk2cu8ui8e4q6t942jg0p7su3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMeX4s7yfwJXjsGsF85E-Xuv-O5F0zv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482930462579-v6h801jkk2cu8ui8e4q6t942jg0p7su3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "482930462579-dj04ip0ihorhhsrbp9bb4ga5h56cjc9u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.feasti.feast-chef",
+                "app_store_id": "1627794965"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

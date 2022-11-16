@@ -1,0 +1,12 @@
+export const SecondaryColor = "#000";
+export const SecondaryDarkColor = "#c43e00";
+export const SecondaryLightColor = "#ffa040";
+export const PrimaryColor = "#1a237e";
+export const PrimaryDark = "#D32323";
+export const PrimaryLight = "#534bae";
+export const SelectedColor = "#d7385e";
+export const WHITE = "#ffffff";
+export const DARKGRAY = "#8c8c8c";
+export const CGRAY = "#7b7b7b";
+export const LIGHTGRAY = "#afafaf";
+export const BLACK="#000000"
