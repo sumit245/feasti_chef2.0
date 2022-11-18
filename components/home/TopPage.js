@@ -17,6 +17,7 @@ import Menu from './Menu';
 import Notification from '../header/Notification';
 import { sendPushNotification } from '../../helpers/NotificationServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CHEF_HOME_URL } from '../../EndPoints';
 
 export default function TopPage({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -31,7 +32,7 @@ export default function TopPage({ navigation }) {
   const [type, setType] = useState('');
 
   const fetchMeal = async (restaurant_id, day, category) => {
-    const response = await axios.get(`http://192.168.1.4:5000/api/orders/forchefhome/${restaurant_id}/${day}/${category}`);
+    const response = await axios.get(`${CHEF_HOME_URL}${restaurant_id}/${day}/${category}`);
     const { data } = response;
     const { meal_name, count, add_ons, type } = data;
     setMeal(meal_name);
@@ -56,7 +57,7 @@ export default function TopPage({ navigation }) {
   useEffect(() => {
     fetchMeal(restaurant_id, 'Today', slot);
   }, [slot]);
-  
+
   const onRefresh = () => {
     setRefreshing(true);
     fetchMeal(restaurant_id, 'Today', slot);
