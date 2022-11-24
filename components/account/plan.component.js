@@ -43,6 +43,7 @@ export default function Plans() {
     setFifteenPlan(profile.base_15price)
     setThirtyPlan(profile.base_30price)
     setPlans(profile.price_plans)
+    console.log(profile.restaurant_name);
   }, [profile])
 
   return (
@@ -78,10 +79,13 @@ export default function Plans() {
           {
             Array.isArray(plans) && plans.map((plan, key) => (
               <View style={{ marginVertical: 4 }} key={key}>
-                <Text style={styles.textStyle}>{plan.category}</Text>
+                <View style={styles.labelContainer}>
+
+                <Text style={styles.label}>{plan.category}</Text>
+                </View>
                 {
                   plan.plans.map((item, index) => (
-                    <>
+                    <View key={index}>
                       <View style={styles.labelContainer}>
                         <Text style={styles.label}>{item.plan_name}</Text>
                       </View>
@@ -96,7 +100,7 @@ export default function Plans() {
                           keyboardType="numeric"
                         />
                       </View>
-                    </>
+                    </View>
                   ))
                 }
               </View>
