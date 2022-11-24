@@ -7,6 +7,7 @@ export const ENTRY_METHOD = "ENTRY_METHOD";
 export const GET_ORDER = "GET_ORDER";
 export const SET_RESTAURANT = "SET_RESTAURANT";
 export const SET_STATUS = "SET_STATUS";
+export const SET_PLANS="SET_PLANS"
 
 export const loginMethod = (phone, navigation) => async (dispatch) => {
   const response = await axios.post(RESTAURANT_LOGIN, { phone });
@@ -68,3 +69,4 @@ export const changeStatus = (id, status) => async (dispatch) => {
   await AsyncStorage.setItem("restaurant", JSON.stringify(data));
   dispatch({ type: SET_RESTAURANT, payload: data });
 };
+

@@ -19,6 +19,7 @@ export default function Plans() {
   const [twoPlan, setTwoPlan] = useState(0)
   const [fifteenPlan, setFifteenPlan] = useState(0)
   const [thirtyPlan, setThirtyPlan] = useState(0)
+  const [plans, setPlans] = useState([])
   const profile = useSelector((state) => state.restaurant);
   const { _id } = profile;
   const dispatch = useDispatch()
@@ -41,7 +42,7 @@ export default function Plans() {
     setTwoPlan(profile.base_2price)
     setFifteenPlan(profile.base_15price)
     setThirtyPlan(profile.base_30price)
-
+    setPlans(profile.price_plans)
   }, [])
 
   return (
@@ -74,24 +75,34 @@ export default function Plans() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
           </TouchableOpacity>
-          <View style={{ marginVertical: 4 }}>
-            <View style={styles.labelContainer}>
-              <Text style={styles.label}>2 Days</Text>
-            </View>
-            <View style={styles.planContainer}>
-              <Icon name="ios-logo-usd" size={16} color="#000" />
-              <TextInput
-                value={twoPlan}
-                editable={editable}
-                selectionColor="#ff6600"
-                style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
-                onChangeText={(e) => setTwoPlan(e)}
-                keyboardType="numeric"
-              />
-            </View>
-
-          </View>
-          <View style={{ marginVertical: 4 }}>
+          {
+            Array.isArray(plans) && plans.map((plan, key) => (
+              <View style={{ marginVertical: 4 }} key={key}>
+                <Text style={styles.textStyle}>{plan.category}</Text>
+                {
+                  plan.plans.map((item, index) => (
+                    <>
+                      <View style={styles.labelContainer}>
+                        <Text style={styles.label}>{item.plan_name}</Text>
+                      </View>
+                      <View style={styles.planContainer}>
+                        <Icon name="ios-logo-usd" size={16} color="#000" />
+                        <TextInput
+                          value={item.base_price}
+                          editable={editable}
+                          selectionColor="#ff6600"
+                          style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
+                          onChangeText={(e) => setTwoPlan(e)}
+                          keyboardType="numeric"
+                        />
+                      </View>
+                    </>
+                  ))
+                }
+              </View>
+            ))
+          }
+          {/* <View style={{ marginVertical: 4 }}>
             <View style={styles.labelContainer}>
               <Text style={styles.label}>15 Days</Text>
             </View>
@@ -124,7 +135,7 @@ export default function Plans() {
               />
             </View>
 
-          </View>
+          </View> */}
         </KeyboardAvoidingView>
       </Collapsible>
     </>
