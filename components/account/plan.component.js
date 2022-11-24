@@ -43,7 +43,7 @@ export default function Plans() {
     setFifteenPlan(profile.base_15price)
     setThirtyPlan(profile.base_30price)
     setPlans(profile.price_plans)
-  }, [])
+  }, [profile])
 
   return (
     <>
