@@ -69,6 +69,10 @@ export default function TopPage({ navigation }) {
     setDay(day)
     fetchMeal(restaurant_id, day, slot);
   };
+  const onSlotChanged = (e) => {
+    setSlot(e)
+    fetchMeal(restaurant_id, thisDay, e)
+  }
 
   return (
     <SafeAreaView style={styles.mainPage}>
@@ -83,7 +87,7 @@ export default function TopPage({ navigation }) {
       >
         <Header title={restaurant_name + ', ' + restaurant_id}>
           <View style={styles.switch}>
-            <ToggleLunchDinner handleToggle={(e) => setSlot(e)} />
+            <ToggleLunchDinner handleToggle={(e) => onSlotChanged(e)} />
             <Notification navigation={navigation} />
           </View>
         </Header>
