@@ -77,34 +77,6 @@ const Item = ({ item }) => {
           >
             {current_time}
           </Text>
-          {/* <CountDown
-            until={60 * 5}
-            size={12}
-            onFinish={() => {
-              reject(item._id);
-            }}
-            digitStyle={{
-              backgroundColor: '#FFF',
-              margin: 0,
-              padding: -4,
-            }}
-            digitTxtStyle={{
-              color: '#1CC625',
-              fontSize: 14,
-              fontWeight: 'bold',
-            }}
-            timeLabelStyle={{
-
-            }}
-            timeToShow={['M', 'S']}
-            separatorStyle={{
-              color: '#1CC625',
-              marginTop: -8,
-              marginHorizontal: -4,
-            }}
-            timeLabels={{ m: 'Min', s: 'Sec' }}
-            showSeparator
-          /> */}
         </View>
         <View
           style={{
@@ -118,9 +90,8 @@ const Item = ({ item }) => {
             {item.user_name}
           </Text>
           <Text style={{ color: DARKGRAY, fontWeight: 'bold' }}>
-            {'$' +
-              (item.base_price -
-                (item.promo_id !== 'PROMOADMIN' ? item.discount : 0))}
+            {'$' + parseFloat(item.base_price -
+              (item.promo_id !== 'PROMOADMIN' ? item.discount : 0)).toFixed(2)}
           </Text>
         </View>
         <Text
@@ -134,12 +105,7 @@ const Item = ({ item }) => {
         >
           Subscription:{' '}
           <Text style={{ fontSize: 14, fontWeight: 'normal' }}>
-            {item.plan === 'twoPlan'
-              ? '2'
-              : item.plan === 'fifteenPlan'
-              ? '15'
-              : '30'}{' '}
-            Meals
+            {item.plan_name}
           </Text>
         </Text>
         <View
