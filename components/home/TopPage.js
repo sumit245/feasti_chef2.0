@@ -27,6 +27,7 @@ export default function TopPage({ navigation }) {
   const [add_ons, setAddOns] = useState([]);
   const [add_on_count, setTotalAdOnCount] = useState(0);
   const [slot, setSlot] = useState('Lunch');
+  const [thisDay, setDay] = useState('Today')
   const { restaurant_name, restaurant_id } = restaurant;
   const [refreshing, setRefreshing] = useState(false);
   const [type, setType] = useState('');
@@ -55,7 +56,7 @@ export default function TopPage({ navigation }) {
   }, []);
 
   useEffect(() => {
-    fetchMeal(restaurant_id, 'Today', slot);
+    fetchMeal(restaurant_id, thisDay, slot);
   }, [slot]);
 
   const onRefresh = () => {
@@ -65,6 +66,7 @@ export default function TopPage({ navigation }) {
   };
 
   const onDayChanged = (day, slot) => {
+    setDay(day)
     fetchMeal(restaurant_id, day, slot);
   };
 
