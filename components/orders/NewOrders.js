@@ -22,7 +22,7 @@ const Item = ({ item }) => {
   const { address } = item;
   const [loader, setLoader] = useState(false);
   const [current_time, setCurrentTime] = useState('');
-  const { address_type, flat_num, city, locality, postal_code } = address;
+  const { address_type, addressLine1, city, addressLine2, postal_code } = address;
   const accept = async (id) => {
     setLoader(true);
     const res = await axios.put(ORDERS + id, { status: 'accepted' });
@@ -159,8 +159,8 @@ const Item = ({ item }) => {
             }}
           >
             {(address_type + ', ' || '') +
-              (flat_num + ',' || '') +
-              (locality || '') +
+              (addressLine1 + ',' || '') +
+              (addressLine2 || '') +
               (city + ', ' || '') +
               (postal_code || '')}
           </Text>{' '}
