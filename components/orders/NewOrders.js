@@ -106,7 +106,7 @@ const Item = ({ item }) => {
             {item.user_name}
           </Text>
           <Text style={{ color: DARKGRAY, fontWeight: 'bold' }}>
-            {'$' + parseFloat(price).toFixed(2)}
+            {'$' + parseFloat(item.base_price).toFixed(2)}
           </Text>
         </View>
         <Text
