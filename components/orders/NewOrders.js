@@ -106,7 +106,7 @@ const Item = ({ item }) => {
             {item.user_name}
           </Text>
           <Text style={{ color: DARKGRAY, fontWeight: 'bold' }}>
-            {'$' + parseFloat(item.base_price).toFixed(2)}
+            ${parseFloat(item.base_price).toFixed(2)}
           </Text>
         </View>
         <Text
@@ -183,7 +183,7 @@ const Item = ({ item }) => {
               </Text>{' '}
             </Text>
           ) : (
-            <Text style={{ padding: 2, marginVertical: 4 }}>
+            <Text style={{ padding: 2, marginVertical: 4, fontWeight: 'bold', fontSize: 16 }}>
               Pickup order
             </Text>
           )
