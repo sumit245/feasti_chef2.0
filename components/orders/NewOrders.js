@@ -22,6 +22,7 @@ const Item = ({ item }) => {
   const { address } = item;
   const [loader, setLoader] = useState(false);
   const [current_time, setCurrentTime] = useState('');
+  const [price, setPrice] = useState("")
   const { address_type, addressLine1, city, addressLine2, postal_code } = address;
   const accept = async (id) => {
     setLoader(true);
@@ -47,7 +48,7 @@ const Item = ({ item }) => {
     }, 1000);
     if (moment().isSameOrAfter(moment(start))) {
       axios
-        .put(ORDERS + item._id, { status: 'rejected' })
+        .put(ORDERS + item._id, { status: 'accepted' })
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     }
@@ -55,6 +56,21 @@ const Item = ({ item }) => {
   useEffect(() => {
     autoRejection();
   }, []);
+
+  useEffect(() => {
+    let componentMount = true
+    if (componentMount) {
+      const { base_price, promo_id, discount } = item
+      let discountGiven = promo_id !== "PROMOADMIN" ? discount : 0
+      let chefPrice = parseFloat(base_price) - parseFloat(discountGiven)
+      setPrice(chefPrice)
+    }
+
+    return () => {
+      componentMount = false
+    }
+  }, [item])
+
 
   if (!loader) {
     return (
@@ -90,8 +106,7 @@ const Item = ({ item }) => {
             {item.user_name}
           </Text>
           <Text style={{ color: DARKGRAY, fontWeight: 'bold' }}>
-            {'$' + parseFloat(item.base_price -
-              (item.promo_id !== 'PROMOADMIN' ? item.discount : 0)).toFixed(2)}
+            {'$' + parseFloat(price).toFixed(2)}
           </Text>
         </View>
         <Text
@@ -142,29 +157,37 @@ const Item = ({ item }) => {
             </Text>{' '}
           </Text>
         </View>
-        <Text
-          style={{
-            padding: 2,
-            fontWeight: 'bold',
-            fontSize: 16,
-            marginVertical: 4,
-          }}
-        >
-          Delivery To:{' '}
-          <Text
-            style={{
-              textTransform: 'capitalize',
-              fontSize: 14,
-              fontWeight: 'normal',
-            }}
-          >
-            {(address_type + ', ' || '') +
-              (addressLine1 + ',' || '') +
-              (addressLine2 || '') +
-              (city + ', ' || '') +
-              (postal_code || '')}
-          </Text>{' '}
-        </Text>
+        {
+          item.isDelivery ? (
+            <Text
+              style={{
+                padding: 2,
+                fontWeight: 'bold',
+                fontSize: 16,
+                marginVertical: 4,
+              }}
+            >
+              Delivery To:{' '}
+              <Text
+                style={{
+                  textTransform: 'capitalize',
+                  fontSize: 14,
+                  fontWeight: 'normal',
+                }}
+              >
+                {(address_type + ', ' || '') +
+                  (addressLine1 + ',' || '') +
+                  (addressLine2 || '') +
+                  (city + ', ' || '') +
+                  (postal_code || '')}
+              </Text>{' '}
+            </Text>
+          ) : (
+            <Text style={{ padding: 2, marginVertical: 4 }}>
+              Pickup order
+            </Text>
+          )
+        }
 
         <Text style={{ padding: 2, marginVertical: 4 }}>
           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Ordered at: </Text>
