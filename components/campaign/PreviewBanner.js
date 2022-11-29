@@ -10,6 +10,7 @@ import Loader from "../../helpers/Loader";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
+import { GET_BANNER_LENGTH, PROMO_URL } from "../../EndPoints";
 export default function PreviewBanner({ route, navigation }) {
   const {
     title,
@@ -31,10 +32,7 @@ export default function PreviewBanner({ route, navigation }) {
   let end = moment(end_date).format("DD MMM, YYYY");
 
   const submit = async () => {
-    const getMyBanner = await axios.get(
-      "http://54.146.133.108:5000/api/promo/getbannerslength/" +
-      restaurant.restaurant_id
-    );
+    const getMyBanner = await axios.get(`${GET_BANNER_LENGTH}${restaurant.restaurant_id}`);
     const myBanner = await getMyBanner.data;
     if (myBanner.length !== 0) {
       alert(
@@ -42,9 +40,7 @@ export default function PreviewBanner({ route, navigation }) {
       );
     } else {
       setLoading(true);
-      const response = await axios.get(
-        "http://54.146.133.108:5000/api/promo/"
-      );
+      const response = await axios.get(`${PROMO_URL}`);
       const { data } = response.data;
 
       let prom = data.length;
@@ -62,10 +58,7 @@ export default function PreviewBanner({ route, navigation }) {
         discount: discount,
         status: "active"
       };
-      const res = await axios.post(
-        "http://54.146.133.108:5000/api/promo/",
-        banner
-      );
+      const res = await axios.post(`${PROMO_URL}`, banner);
       setLoading(false);
       navigation.navigate("submit_coupon", {
         promo: banner,
@@ -219,7 +212,7 @@ export default function PreviewBanner({ route, navigation }) {
             </View>
           </View>
 
-          <View style={[styles.checkContainer,{bottom:8}]}>
+          <View style={[styles.checkContainer, { bottom: 8 }]}>
             <Checkbox.Android
               color="#FF6600"
               status={checked ? "checked" : "unchecked"}

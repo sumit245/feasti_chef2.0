@@ -6,6 +6,7 @@ import { SecondaryLightColor, DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
+import { DASHBOARD_URL } from "../../EndPoints";
 
 function TrackCampaignContent({ banners, loaded, index }) {
   const [discount, setDiscount] = useState(0);
@@ -14,10 +15,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
   const [users, setUsers] = useState(0);
 
   const fetchStat = async (id) => {
-    const res = await axios.get(
-      "http://54.146.133.108:5000/api/chefdashboard/getchefbyidandrevenue/" +
-      id
-    );
+    const res = await axios.get(`${DASHBOARD_URL}getchefbyidandrevenue/${id}`);
     const { data } = res;
     const { revenue, users, discount, totalOrders } = data;
     setUsers(users);
@@ -35,7 +33,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
       moment(),
       "Days"
     );
-    console.log("Remaining",remaining);
+    console.log("Remaining", remaining);
     return (
       <View
         style={{
@@ -108,7 +106,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
                 </Text>
               </View>
 
-              <View style={[styles.progressCounter,{zIndex:1000}]}>
+              <View style={[styles.progressCounter, { zIndex: 1000 }]}>
                 <View style={{ marginBottom: 16 }}>
                   <Text
                     style={[
@@ -124,12 +122,12 @@ function TrackCampaignContent({ banners, loaded, index }) {
                     ${banners.rpc}/click
                   </Text>
                   <Text
-                  style={[styles.smallText, { color: "#fff", lineHeight: 16,marginLeft:28,marginTop:20 }]}
-                >
-                  {banners.duration} Days
-                </Text>
+                    style={[styles.smallText, { color: "#fff", lineHeight: 16, marginLeft: 28, marginTop: 20 }]}
+                  >
+                    {banners.duration} Days
+                  </Text>
                 </View>
-               
+
               </View>
             </View>
           </LinearGradient>
