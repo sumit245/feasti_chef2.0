@@ -41,7 +41,7 @@ export default function AddMealsLayout({ navigation }) {
     meals = meals.filter((item) => item.category === slot)
 
     console.log('====================================');
-    console.log(meals.items.length);
+    console.log(meals.items);
     console.log('====================================');
     // const { meals } = data;
     // setMeals(meals);
