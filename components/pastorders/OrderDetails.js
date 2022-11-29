@@ -87,7 +87,35 @@ export default function OrderDetails({ route, navigation }) {
               <Text>{order.email_id}</Text>
             </View>
           </View>
-
+          {
+            item.isDelivery ? (
+              <View style={styles.row}>
+                <View style={styles.headerRows}>
+                  <Text style={styles.text}>Deliver to</Text>
+                  <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
+                    {(address_type || "") +
+                      ", " +
+                      (addressLine1 || "") +
+                      ", " +
+                      (city || "") +
+                      "\n " +
+                      (locality || "") +
+                      ", " +
+                      (postal_code || "")}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View style={styles.row}>
+                <View style={styles.headerRows}>
+                  <Text style={styles.text}>Self Pickup</Text>
+                  <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
+                    User will pickup this order
+                  </Text>
+                </View>
+              </View>
+            )
+          }
           <View style={styles.row}>
             <View style={styles.headerRows}>
               <Text style={styles.text}>Deliver to</Text>
@@ -104,6 +132,7 @@ export default function OrderDetails({ route, navigation }) {
               </Text>
             </View>
           </View>
+
           <View style={styles.row}>
             <View style={styles.headerRows}>
               <Text style={styles.text}>plan</Text>
