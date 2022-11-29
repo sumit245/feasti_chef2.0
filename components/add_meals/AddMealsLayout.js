@@ -38,10 +38,10 @@ export default function AddMealsLayout({ navigation }) {
     console.log('====================================');
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
     let { meals } = response.data;
-    const { items } = meals.filter((item) => item.category === slot)
+    meals = meals.filter((item) => item.category === slot)
 
     console.log('====================================');
-    console.log(items.length);
+    console.log(meals.items.length);
     console.log('====================================');
     // const { meals } = data;
     // setMeals(meals);
