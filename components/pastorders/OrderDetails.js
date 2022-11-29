@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 export default function OrderDetails({ route, navigation }) {
   const { order } = route.params;
-  const { address_type, city, flat_num, locality, postal_code } = order.address;
+  const { address_type, city, addressLine1, locality, postal_code } = order.address;
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, restaurant_id } = restaurant;
 
