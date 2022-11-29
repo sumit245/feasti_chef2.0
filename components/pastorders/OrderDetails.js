@@ -98,7 +98,7 @@ export default function OrderDetails({ route, navigation }) {
                       (addressLine1 || "") +
                       "\n " +
                       (city || "") +
-                      
+
                       ", " +
                       (postal_code || "")}
                   </Text>
@@ -115,7 +115,7 @@ export default function OrderDetails({ route, navigation }) {
               </View>
             )
           }
-          <View style={styles.row}>
+          {/* <View style={styles.row}>
             <View style={styles.headerRows}>
               <Text style={styles.text}>Deliver to</Text>
               <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
@@ -130,7 +130,7 @@ export default function OrderDetails({ route, navigation }) {
                   (postal_code || "")}
               </Text>
             </View>
-          </View>
+          </View> */}
 
           <View style={styles.row}>
             <View style={styles.headerRows}>
