@@ -36,7 +36,7 @@ export default function AddMealsLayout({ navigation }) {
     const { data } = response;
     // const { meals } = data;
     console.log('====================================');
-    console.log(data);
+    console.log(id);
     console.log('====================================');
     // setMeals(meals);
   };
