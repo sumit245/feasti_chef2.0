@@ -11,6 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AddEditMeals from "./AddEditMeals";
 import axios from "axios";
 import { RESTAURANT_URL } from "../../EndPoints";
+import ToggleLunchDinner from "../header/ToggleLunchDinner";
 
 export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -36,10 +37,11 @@ export default function AddMealsLayout({ navigation }) {
     console.log(id);
     console.log('====================================');
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
-    const { data } = response;
-    const { meals } = data
+    let { meals } = response.data;
+    const { items } = meals.filter((item) => item.category === slot)
+
     console.log('====================================');
-    console.log(meals);
+    console.log(items.length);
     console.log('====================================');
     // const { meals } = data;
     // setMeals(meals);
@@ -284,6 +286,7 @@ export default function AddMealsLayout({ navigation }) {
           <Header
             title="Meals"
           />
+          <ToggleLunchDinner handleToggle={(value) => setSlot(value)} />
         </View>
       </View>
       <Divider />
