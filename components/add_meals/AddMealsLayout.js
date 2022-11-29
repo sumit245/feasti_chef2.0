@@ -29,19 +29,19 @@ export default function AddMealsLayout({ navigation }) {
     { key: "sixth", title: "Saturday" },
     { key: "seventh", title: "Sunday" },
   ]);
-  const { restaurant_id } = restaurant;
+  const { _id } = restaurant;
 
   const fetchMeals = async (id) => {
-    const response = await axios.get(`${RESTAURANT_URL}${id}`);
-    const { data } = response;
-    // const { meals } = data;
     console.log('====================================');
     console.log(id);
     console.log('====================================');
+    const response = await axios.get(`${RESTAURANT_URL}${id}`);
+    const { data } = response;
+    // const { meals } = data;
     // setMeals(meals);
   };
   useEffect(() => {
-    fetchMeals(restaurant_id);
+    fetchMeals(_id);
   }, [meals]);
 
   const renderTabBar = (props) => (
