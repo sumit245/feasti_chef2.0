@@ -20,6 +20,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import HeaderTwo from '../header/HeaderTwo';
 import { LinearGradient } from 'expo-linear-gradient';
+import { GET_MY_REVIEWS } from '../../EndPoints';
 
 export default function Reviews({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -35,9 +36,7 @@ export default function Reviews({ navigation }) {
   const [selectedStar, setSelectedStar] = useState(0);
 
   const fetchReviews = async (id) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/review/getmyreview/' + id
-    );
+    const response = await axios.get(`${GET_MY_REVIEWS}${id}`);
     const { data } = response;
     setTempReview(data.reverse());
     setReviews(data);

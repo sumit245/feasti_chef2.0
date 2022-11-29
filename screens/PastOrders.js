@@ -13,14 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import Item from "../components/pastorders/Item";
 import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
+import { ORDERS } from "../EndPoints";
 
 export default function PastOrders({ navigation }) {
   const [orders, setOrders] = useState([]);
   const restaurant = useSelector((state) => state.restaurant);
   const getApiData = async () => {
-    const response = await axios.get(
-      "http://54.146.133.108:5000/api/orders"
-    );
+    const response = await axios.get(`${ORDERS}`);
     const orders = await response.data;
     let myOrders = await orders.filter(
       (item) => (item.restaurant_id === restaurant.restaurant_id)
