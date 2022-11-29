@@ -34,11 +34,11 @@ export default function AddMealsLayout({ navigation }) {
   const fetchMeals = async (id) => {
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
     const { data } = response;
-    const { meals } = data;
+    // const { meals } = data;
     console.log('====================================');
-    console.log(meals);
+    console.log(data);
     console.log('====================================');
-    setMeals(meals);
+    // setMeals(meals);
   };
   useEffect(() => {
     fetchMeals(restaurant_id);
