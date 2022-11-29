@@ -24,24 +24,24 @@ const Item = ({ item, index, navigation }) => {
 
   return (
     <View style={styles.card} key={index}>
-      
+
       <View style={styles.title}>
         <Text style={styles.titleText}>#{item.order_id}</Text>
         <Text
           style={[
             item.status === "accepted"
               ? {
-                  color: "#5ca85c",
-                  padding: 2,
-                  borderRadius: 4,
-                  marginLeft: -70,
-                  fontWeight: "bold",
-                  textAlign: "center",
-                  textAlignVertical: "center",
-                  textTransform: "capitalize",
-                }
+                color: "#5ca85c",
+                padding: 2,
+                borderRadius: 4,
+                marginLeft: -70,
+                fontWeight: "bold",
+                textAlign: "center",
+                textAlignVertical: "center",
+                textTransform: "capitalize",
+              }
               : item.status === "started"
-              ? {
+                ? {
                   color: "#ffc300",
                   marginLeft: -70,
                   fontWeight: "bold",
@@ -51,7 +51,7 @@ const Item = ({ item, index, navigation }) => {
                   borderRadius: 4,
                   textTransform: "capitalize",
                 }
-              : {
+                : {
                   color: "#ff4300",
                   padding: 2,
                   borderRadius: 4,
@@ -63,7 +63,7 @@ const Item = ({ item, index, navigation }) => {
                 },
           ]}
         >
-         {" "} {item.status}
+          {" "} {item.status}
         </Text>
         <Text style={styles.cardText}>{item.category}</Text>
       </View>
@@ -77,11 +77,7 @@ const Item = ({ item, index, navigation }) => {
           <Text style={styles.cardText}>
             Plan:
             <Text style={styles.field}>
-              {item.plan === "twoPlan"
-                ? "2 Days"
-                : item.plan === "fifteenPlan"
-                ? "15 Days"
-                : "30 Days"}
+              {item.plan_name}
             </Text>
           </Text>
         </View>
@@ -107,10 +103,7 @@ const Item = ({ item, index, navigation }) => {
 
           <Text style={styles.cardText}>
             Total:
-            <Text style={styles.field}>
-              {" $" +
-                (parseFloat(item.base_price) - (item.promo_id!=="PROMOADMIN"?parseFloat(item.discount): 0))}
-            </Text>
+            <Text style={styles.field}>${item.total}</Text>
           </Text>
         </View>
         <View
