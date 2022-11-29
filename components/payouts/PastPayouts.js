@@ -10,6 +10,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { PAYOUTS } from "../../EndPoints";
 
 const Item = ({ item, commission, navigation }) => {
   const [netcommission, setNetCommission] = useState(0);
@@ -49,25 +50,25 @@ const Item = ({ item, commission, navigation }) => {
           </Text>
         </View>
         <View style={{ alignItems: "flex-end" }}>
-          
+
           <Text style={styles.smallText}>
             {" "}
             <Icon
               name={
                 item.status === "Paid"
                   ? "checkmark-circle"
-                    : "information-circle"
+                  : "information-circle"
               }
               size={18}
               color={
                 item.status === "Paid"
                   ? "green"
-                    : "red"
+                  : "red"
               }
             />
             {item.status || "Unpaid"}
           </Text>
-          <Text style={styles.smallText}>{moment(item.deposit_date).isValid()?moment(item.deposit_date).format("Do MMM, hh:mm A"):"" }</Text>
+          <Text style={styles.smallText}>{moment(item.deposit_date).isValid() ? moment(item.deposit_date).format("Do MMM, hh:mm A") : ""}</Text>
         </View>
       </View>
       <TouchableOpacity
@@ -108,10 +109,7 @@ export default function PastPayouts({ navigation, commission }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_id } = restaurant;
   const fetchPastPayouts = async (id) => {
-    const response = await axios.get(
-      "http://54.146.133.108:5000/api/admintochefpayments/getpastpayout/" +
-      id
-    );
+    const response = await axios.get(`${PAYOUTS}${id}`);
     setPayouts(response.data);
   };
   useEffect(() => {

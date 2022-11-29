@@ -8,6 +8,7 @@ import axios from 'axios';
 import ListExpired from './ListExpired';
 import { Provider } from 'react-native-paper';
 import ListExpiredCoupons from './ListExpiredCoupons';
+import { DASHBOARD_URL, GET_COUPON_CHEF } from '../../EndPoints';
 
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -24,11 +25,7 @@ export default function TrackPerformance({ route, navigation }) {
 
   const fetchMyCoupon = async (restaurant, pos) => {
     if (pos == 0) {
-      const response = await axios.get(
-        'http://54.146.133.108:5000/api/coupon/getcouponforchef/' +
-          restaurant +
-          '/Active'
-      );
+      const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Active`);
       const { data } = response;
       const { coupons, promotedOrders, revenue, discount, unique } = data;
       setPromotedOrders(promotedOrders.length);
@@ -38,9 +35,7 @@ export default function TrackPerformance({ route, navigation }) {
       setUnique(unique);
       setloaded(true);
     } else {
-      const dashboardResponse = await axios.get(
-        'http://54.146.133.108:5000/api/chefdashboard/' + restaurant
-      );
+      const dashboardResponse = await axios.get(`${DASHBOARD_URL}${restaurant}`);
       const dashres = await dashboardResponse.data;
       const { coupons } = dashres.dashboard;
       setCoupon(coupons);
@@ -73,7 +68,7 @@ export default function TrackPerformance({ route, navigation }) {
       style={{
         backgroundColor: 'transparent',
         marginVertical: 0,
-        paddingVertical:0
+        paddingVertical: 0
       }}
       activeColor="#ff6600"
       labelStyle={{ fontWeight: 'bold' }}

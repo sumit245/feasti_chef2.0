@@ -7,6 +7,7 @@ import { styles } from './campaign.styles';
 import axios from 'axios';
 import Loader from '../../helpers/Loader';
 import ListExpireBanners from './ListExpireBanners';
+import { DASHBOARD_URL, PROMO_URL } from '../../EndPoints';
 
 export default function TrackCampaign({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -23,9 +24,7 @@ export default function TrackCampaign({ route, navigation }) {
   let address = locality + ', ' + city + ', ' + state;
 
   const fetchMyBanner = async (restaurant_id) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/promo/' + restaurant_id
-    );
+    const response = await axios.get(`${PROMO_URL}${restaurant_id}`);
     const { data } = response;
     let banners = data.filter((item) => item.status === 'active');
     setBanner(banners);
@@ -33,9 +32,7 @@ export default function TrackCampaign({ route, navigation }) {
   };
 
   const fetchMyExpiredBanner = async (restaurant_id) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/chefdashboard/' + restaurant_id
-    );
+    const response = await axios.get(`${DASHBOARD_URL}${restaurant_id}`);
     const { dashboard } = response.data;
     const { banners } = dashboard;
     setBanner(banners);

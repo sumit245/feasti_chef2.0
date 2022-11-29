@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient"
 import * as MailComposer from "expo-mail-composer"
+import { MAIL_URL } from "../../EndPoints";
 
 
 export default function Contacts({ navigation }) {
@@ -49,14 +50,11 @@ export default function Contacts({ navigation }) {
     };
     MailComposer.composeAsync({
       subject: info.subject,
-      recipients: ["support@feasti.com","sumitranjan245@gmail.com"],
+      recipients: ["support@feasti.com", "sumitranjan245@gmail.com"],
       body: info.body
     })
 
-    const response = await axios.post(
-      "http://54.146.133.108:5000/api/contacts/",
-      mail
-    );
+    const response = await axios.post(`${MAIL_URL}`, mail);
     const { status } = await response.data;
     if (status === 200) {
       Alert.alert(

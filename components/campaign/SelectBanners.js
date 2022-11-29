@@ -6,6 +6,7 @@ import PromoCard from "./PromoCard";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Shop from "react-native-vector-icons/Entypo";
+import { BANNER_URL } from "../../EndPoints";
 
 export default function SelectBanners({ navigation }) {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ export default function SelectBanners({ navigation }) {
   let address = locality + ", " + city + ", " + state;
 
   const fetchPlans = async () => {
-    const response = await axios.get("http://54.146.133.108:5000/api/banner");
+    const response = await axios.get(`${BANNER_URL}`);
     const bannerplans = await response.data.data;
     setData(bannerplans.reverse());
   };

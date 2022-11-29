@@ -10,6 +10,7 @@ import { useState } from "react";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
 import { DARKGRAY } from "../../Colors";
+import { COUPON_URL, RESTAURANT_URL } from "../../EndPoints";
 export default function PreviewCoupon({ navigation, route }) {
   const {
     type,
@@ -58,17 +59,11 @@ export default function PreviewCoupon({ navigation, route }) {
         discount: discount,
         duration: diff + " Days",
       };
-      const response = await axios.post(
-        "http://54.146.133.108:5000/api/coupon/",
-        promo
-      );
+      const response = await axios.post(`${COUPON_URL}`, { promo });
       const coupon = await response.data;
       promo.status = await coupon.data.status;
 
-      const pushTorestaurant = await axios.put(
-        "http://54.146.133.108:5000/api/newrest/" + _id,
-        { promo }
-      );
+      const pushTorestaurant = await axios.put(`${RESTAURANT_URL}${_id}`, { promo });
       const rest = await pushTorestaurant.data;
       setLoading(true);
       navigation.navigate("submit_coupon", {
@@ -79,12 +74,12 @@ export default function PreviewCoupon({ navigation, route }) {
   };
 
   const showDelete = () => {
-    Alert.alert("Are you sure?", 
-    "Discarding a coupon will remove all saved details", 
-    [
-      { text: "OK", onPress: () => navigation.navigate("Growth") },
-    ], 
-    { cancelable: true, onDismiss: () => navigation.navigate("Growth") })
+    Alert.alert("Are you sure?",
+      "Discarding a coupon will remove all saved details",
+      [
+        { text: "OK", onPress: () => navigation.navigate("Growth") },
+      ],
+      { cancelable: true, onDismiss: () => navigation.navigate("Growth") })
   }
   if (loading) {
     return (

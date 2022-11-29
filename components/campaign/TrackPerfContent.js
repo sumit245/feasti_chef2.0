@@ -9,6 +9,7 @@ import axios from "axios";
 import CustomAlert from "../../helpers/CustomAlert.js";
 import { useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
+import { COUPON_URL, DASHBOARD_URL, RESTAURANT_URL } from "../../EndPoints";
 
 function TrackPerfContent({
   banners,
@@ -68,30 +69,18 @@ function TrackPerfContent({
       totalUsed: unique.length,
     };
 
-    const couponresponse = await axios.put(
-      "http://54.146.133.108:5000/api/coupon/" + id,
-      { status: "Inactive" }
+    const couponresponse = await axios.put(`${COUPON_URL}${id}`, { status: "Inactive" });
+
+    const restaurantUpdate = await axios.put(`${RESTAURANT_URL}${_id}`, { promo: [] }
     );
 
-    const restaurantUpdate = await axios.put(
-      "http://54.146.133.108:5000/api/newrest/" + _id,
-      { promo: [] }
-    );
-
-    const dashboardResponse = await axios.get(
-      "http://54.146.133.108:5000/api/chefdashboard/" + restaurant_id
-    );
+    const dashboardResponse = await axios.get(`${DASHBOARD_URL}${restaurant_id}`);
 
     const { dashboard } = await dashboardResponse.data;
     const { coupons } = dashboard
     let prevCoupons = [...coupons];
     prevCoupons.push(myCoupon);
-    const updateDashboard = await axios.put(
-      "http://54.146.133.108:5000/api/chefdashboard/" +
-      restaurant_name +
-      "/" +
-      dashboard._id,
-      { coupons: prevCoupons }
+    const updateDashboard = await axios.put(`${DASHBOARD_URL}${restaurant_name}/${dashboard._id}`, { coupons: prevCoupons }
     );
 
     const { status } = updateDashboard;
@@ -117,49 +106,49 @@ function TrackPerfContent({
   return (
     <View style={styles.bannerCard}>
       <View>
-      <LinearGradient colors={["#ff9900", "#ff6600"]} >
-        <View style={styles.trackHead}>
-          <View>
-            <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
-              {banner.promo_code} (
-              {banner.discount_type === "$"
-                ? "$" + banner.discount
-                : banner.discount + "%"}{" "}
-              OFF)
-            </Text>
-            <Text style={styles.bannerHeadTexts}>
-              {banner.plan_name}({banner.category})
-            </Text>
-            <Text style={styles.bannerHeadTexts}>
-              Duration:
-              {banner.start_date + "-" + banner.end_date}
-            </Text>
-            <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
-          </View>
-
-          <View style={[styles.progressCounter, { zIndex: 1000 }]}>
-            <Text
-              style={[
-                styles.bannerHeadTexts,
-                { marginTop: 32, marginBottom: 4 },
-              ]}
-            >
-              {banner.duration}
-            </Text>
-
-          </View>
-        </View>
-      </LinearGradient>
-      <View style={{position:"absolute",top:60,right:8}}>
-      <View style={styles.progressDonught}>
-              <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
-                {remaining>0?parseInt(remaining)+1:0}
+        <LinearGradient colors={["#ff9900", "#ff6600"]} >
+          <View style={styles.trackHead}>
+            <View>
+              <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
+                {banner.promo_code} (
+                {banner.discount_type === "$"
+                  ? "$" + banner.discount
+                  : banner.discount + "%"}{" "}
+                OFF)
               </Text>
+              <Text style={styles.bannerHeadTexts}>
+                {banner.plan_name}({banner.category})
+              </Text>
+              <Text style={styles.bannerHeadTexts}>
+                Duration:
+                {banner.start_date + "-" + banner.end_date}
+              </Text>
+              <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
             </View>
-            <Text style={styles.smallText}>Days Left</Text>
-      </View>
-    
-      
+
+            <View style={[styles.progressCounter, { zIndex: 1000 }]}>
+              <Text
+                style={[
+                  styles.bannerHeadTexts,
+                  { marginTop: 32, marginBottom: 4 },
+                ]}
+              >
+                {banner.duration}
+              </Text>
+
+            </View>
+          </View>
+        </LinearGradient>
+        <View style={{ position: "absolute", top: 60, right: 8 }}>
+          <View style={styles.progressDonught}>
+            <Text style={{ fontWeight: "bold", fontSize: 14, color: "#ff6600" }}>
+              {remaining > 0 ? parseInt(remaining) + 1 : 0}
+            </Text>
+          </View>
+          <Text style={styles.smallText}>Days Left</Text>
+        </View>
+
+
       </View>
       {/* bannercard top area */}
 
@@ -205,7 +194,7 @@ function TrackPerfContent({
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>{promotedOrders}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Orders</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Orders</Text>
             </View>
           </View>
 
@@ -213,7 +202,7 @@ function TrackPerfContent({
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${parseFloat(revenue) - parseFloat(discount)}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Net Income</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Net Income</Text>
             </View>
           </View>
 
@@ -222,7 +211,7 @@ function TrackPerfContent({
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${revenue}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Base Income</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Base Income</Text>
             </View>
           </View>
 
@@ -230,7 +219,7 @@ function TrackPerfContent({
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}> ${discount}</Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Discount Paid</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Discount Paid</Text>
             </View>
           </View>
 
@@ -240,7 +229,7 @@ function TrackPerfContent({
               <Text style={styles.bigText}>
                 {Array.isArray(unique) ? unique.length : unique}
               </Text>
-              <Text style={[styles.smallText,{color:DARKGRAY}]}> Total Users</Text>
+              <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Users</Text>
             </View>
           </View>
         </View>
