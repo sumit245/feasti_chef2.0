@@ -47,7 +47,7 @@ export default function AddMealsLayout({ navigation }) {
   };
   useEffect(() => {
     fetchMeals(_id);
-  }, [meals, slot]);
+  }, [slot]);
 
   const renderTabBar = (props) => (
     <TabBar
