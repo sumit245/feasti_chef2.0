@@ -4,7 +4,7 @@ import Header from "../header/Header";
 import { TabView, TabBar } from "react-native-tab-view";
 import { Divider } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { SafeAreaView, View,TouchableOpacity } from "react-native";
+import { SafeAreaView, View, TouchableOpacity } from "react-native";
 import { width } from "../../Dimens";
 import Icon from "react-native-vector-icons/Ionicons"
 import { LinearGradient } from "expo-linear-gradient";
@@ -30,17 +30,20 @@ export default function AddMealsLayout({ navigation }) {
     { key: "seventh", title: "Sunday" },
   ]);
   const { restaurant_id } = restaurant;
-  
+
   const fetchMeals = async (id) => {
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
     const { data } = response;
     const { meals } = data;
+    console.log('====================================');
+    console.log(meals);
+    console.log('====================================');
     setMeals(meals);
   };
   useEffect(() => {
     fetchMeals(restaurant_id);
   }, [meals]);
-  
+
   const renderTabBar = (props) => (
     <TabBar
       {...props}
