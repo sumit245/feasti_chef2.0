@@ -7,6 +7,7 @@ import Collapsible from 'react-native-collapsible';
 import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
 import { width } from '../../Dimens';
+import { GET_SLOTS } from '../../EndPoints';
 
 export default function Menu({
   meal_name,
@@ -22,7 +23,7 @@ export default function Menu({
   const [dinner, setDinner] = useState('');
 
   const fetchSlotTime = async () => {
-    const slots = await axios.get('http://54.146.133.108:5000/api/slots');
+    const slots = await axios.get(`${GET_SLOTS}`);
     const { lunchSlots, dinnerSlots } = await slots.data[0];
     let first = lunchSlots[0];
     let startlunch = first.slot_time;
