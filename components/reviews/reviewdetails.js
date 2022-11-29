@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { GET_REVIEW_BYID } from "../../EndPoints";
 
 export default function Review({ item, index, navigation }) {
   const [isReplying, setReplying] = useState(false);
@@ -29,7 +30,7 @@ export default function Review({ item, index, navigation }) {
     const res = await axios.get("http://192.168.1.4:5000/api/orders/getOrderbyID/" + id);
     const { data } = res;
     if (data !== null) {
-      navigation.navigate("orderDetails", {order: data});
+      navigation.navigate("orderDetails", { order: data });
     } else {
       alert("No Matching Order Found!!!");
     }
@@ -45,8 +46,7 @@ export default function Review({ item, index, navigation }) {
     };
     let myReply = [reply];
     let id = item._id;
-    const response = await axios.put(
-      "http://54.146.133.108:5000/api/review/" + id,
+    const response = await axios.put(`${GET_REVIEW_BYID}${id}`,
       { comments: myReply }
     );
     const { data } = response;
