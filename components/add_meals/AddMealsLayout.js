@@ -285,8 +285,9 @@ export default function AddMealsLayout({ navigation }) {
           <Header
             title="Meals"
           />
-          <ToggleLunchDinner handleToggle={(value) => setSlot(value)} />
+
         </View>
+        <ToggleLunchDinner handleToggle={(value) => setSlot(value)} />
       </View>
       <Divider />
       <TabView
