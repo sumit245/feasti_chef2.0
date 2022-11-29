@@ -37,6 +37,9 @@ export default function AddMealsLayout({ navigation }) {
     console.log('====================================');
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
     const { data } = response;
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
     // const { meals } = data;
     // setMeals(meals);
   };
