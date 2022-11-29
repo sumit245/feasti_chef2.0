@@ -1,6 +1,9 @@
-const BASE_URL = "http://10.0.0.136:4001/"
-export const PARTNER_REQUEST = BASE_URL + "api/partnerrequest/";
-export const RESTAURANT_URL = BASE_URL + "api/newrest/";
-export const RESTAURANT_LOGIN = BASE_URL + "api/newrest/login/";
-export const ORDERS = BASE_URL + "api/orders/";
-export const CHEF_HOME_URL = BASE_URL + "api/orders/forchefhome/"
+const BASE_URL = "http://18.117.246.192"
+export const PARTNER_REQUEST = BASE_URL + "/api/partnerrequest/";
+export const RESTAURANT_URL = BASE_URL + "/api/newrest/";
+export const RESTAURANT_LOGIN = BASE_URL + "/api/newrest/login/";
+export const ORDERS = BASE_URL + "/api/orders/";
+export const CHEF_HOME_URL = BASE_URL + "/api/orders/forchefhome/"
+export const GET_DISPATCH_ORDER = BASE_URL + '/api/orders/active/'
+export const GET_SLOTS = BASE_URL + '/api/slots'
+export const GET_CURRENT_ORDERS = BASE_URL + '/api/getcurrentorder/'

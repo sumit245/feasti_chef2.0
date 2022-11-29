@@ -18,6 +18,7 @@ import axios from 'axios';
 import Loader from '../helpers/Loader';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { GET_CURRENT_ORDERS, GET_DISPATCH_ORDER, GET_SLOTS } from '../EndPoints';
 
 const ListEmptyComponent = () => (
   <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -83,7 +84,7 @@ export default function Orders() {
 
   const fetchSlots = async () => {
     setLoaded(false);
-    const response = await axios.get('http://192.168.1.4:5000/api/slots');
+    const response = await axios.get(`${GET_SLOTS}`);
     const slots = await response.data;
     const { lunchSlots, dinnerSlots } = slots[0];
     let mylunch = lunchSlots.map((el) => el.slot_time);
@@ -94,9 +95,7 @@ export default function Orders() {
   };
 
   const fetchOrders = async (restaurant) => {
-    const response = await axios.get(
-      'http://192.168.1.4:5000/api/orders/active/' + restaurant
-    );
+    const response = await axios.get(`${GET_DISPATCH_ORDER}${restaurant}`);
     const { activeorders } = response.data;
     const today = moment();
     let todayOrders = activeorders.filter(
@@ -107,9 +106,7 @@ export default function Orders() {
         ) && item.time === currentTab
     );
     setOrders(todayOrders);
-    const currentOrderResponse = await axios.get(
-      'http://54.146.133.108:5000/api/getcurrentorder/'
-    );
+    const currentOrderResponse = await axios.get(`${GET_CURRENT_ORDERS}`);
     const currentOrder = currentOrderResponse.data;
     const filterByReference = (arr1, arr2) => {
       let res = [];
