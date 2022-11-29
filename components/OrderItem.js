@@ -6,12 +6,13 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {  Switch } from 'react-native-paper';
+import { Switch } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { PrimaryColor, SecondaryDarkColor } from '../Colors';
 import axios from 'axios';
 import { avatarify } from '../helpers/truncate_string';
 import Loader from '../helpers/Loader';
+import { GET_CURRENT_ORDER_DETAIL, SET_ORDER_STATUS } from '../EndPoints';
 
 const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -40,8 +41,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   };
 
   const getCurrentOrderDetails = async () => {
-    const res = await axios.get(
-      'http://54.146.133.108:5000/api/getcurrentorder/getOrderDetails/' +
+    const res = await axios.get(`${GET_CURRENT_ORDER_DETAIL}` +
       item.order_id
     );
     if (res.data !== null) {
@@ -53,9 +53,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
 
   const setCurrentOrderDetails = async () => {
     setLoading(true);
-    const res = await axios.put(
-      'http://54.146.133.108:5000/api/getcurrentorder/getandupdateorderstatus/' +
-      item.order_id,
+    const res = await axios.put(`${SET_ORDER_STATUS}` + item.order_id,
       {
         delivered: true,
       }

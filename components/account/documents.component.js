@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "../header/Header";
 import HeaderTwo from "../header/HeaderTwo";
+import { RESTAURANT_URL } from "../../EndPoints";
 
 const { width, height } = Dimensions.get("window");
 export const VerificationDocs = ({ navigation }) => {
@@ -25,9 +26,7 @@ export const VerificationDocs = ({ navigation }) => {
   const { _id } = profile;
 
   const fetchPapers = async (id) => {
-    const response = await axios.get(
-      "http://54.146.133.108:5000/api/newrest/" + id
-    );
+    const response = await axios.get(`${RESTAURANT_URL}${id}`);
     const restaurant = await response.data;
     const paper = restaurant.papers;
     setPapers(paper);

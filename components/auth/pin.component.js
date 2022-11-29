@@ -8,6 +8,7 @@ import { setRestaurant } from "../../actions/actions";
 import { styles } from "./auth.style";
 import BackButton from "../BackButton";
 import axios from "axios";
+import { RESTAURANT_URL } from "../../EndPoints";
 const PinPage = ({ route, navigation, entry }) => {
   const pinView = useRef(null);
   const [showRemoveButton, setShowRemoveButton] = useState(false);
@@ -32,9 +33,7 @@ const PinPage = ({ route, navigation, entry }) => {
       if (pin === enteredPin) {
         const rest = await AsyncStorage.getItem("restaurant");
         const { _id } = JSON.parse(rest);
-        const res = await axios.get(
-          "http://54.146.133.108:5000/api/newrest/" + _id
-        );
+        const res = await axios.get(`${RESTAURANT_URL}${_id}`);
         const restra = res.data;
         let newrest = JSON.stringify(restra);
         await AsyncStorage.setItem("restaurant", newrest);
