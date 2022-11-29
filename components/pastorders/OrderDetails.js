@@ -25,7 +25,7 @@ export default function OrderDetails({ route, navigation }) {
 
   const subtotals =
     Array.isArray(order.add_on) && order.add_on.map(item => (item.map((item) => item.subtotal)));
-  let price = subtotals.length!==0?subtotals[0].reduce(add, 0):0;
+  let price = subtotals.length !== 0 ? subtotals[0].reduce(add, 0) : 0;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,7 +94,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
                 {(address_type || "") +
                   ", " +
-                  (flat_num || "") +
+                  (addressLine1 || "") +
                   ", " +
                   (city || "") +
                   "\n " +
@@ -112,11 +112,7 @@ export default function OrderDetails({ route, navigation }) {
             </View>
             <View style={styles.headerRows}>
               <Text>
-                {order.plan === "twoPlan"
-                  ? "2 Days"
-                  : order.plan === "fifteenPlan"
-                    ? "15 Days"
-                    : "30 Days"}
+                {order.plan_name}
               </Text>
               <Text>{order.start_date}</Text>
               <Text>{order.end_date}</Text>
@@ -130,11 +126,8 @@ export default function OrderDetails({ route, navigation }) {
             </View>
             <View style={styles.headerRows}>
               <Text>{"$" + order.base_price}</Text>
-              <Text>{order.promo_id!=="PROMOADMIN"?("$" + order.discount):0}</Text>
-              <Text>
-                {"$" +
-                  (parseFloat(order.base_price) - (order.promo_id!=="PROMOADMIN"?parseFloat(order.discount):0))}
-              </Text>
+              <Text>${order.promo_id !== "PROMOADMIN" ? order.discount : 0}</Text>
+              <Text>${parseFloat(order.total).toFixed(2)}</Text>
             </View>
           </View>
         </View>
