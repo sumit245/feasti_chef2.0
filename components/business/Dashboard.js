@@ -19,6 +19,7 @@ import { TabView, TabBar } from 'react-native-tab-view';
 import StatCards from './StatCards';
 import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
+import { BASE_URL, GET_DISPATCH_ORDER, GET_USER_BY_TYPES, ORDERS } from '../../EndPoints';
 
 export default function Dashboard({ navigation }) {
   const layout = useWindowDimensions();
@@ -54,9 +55,7 @@ export default function Dashboard({ navigation }) {
   }
 
   const fetchOrders = async (restaurant) => {
-    const res = await axios.get(
-      'http://54.146.133.108:5000/api/orders/active/' + restaurant
-    );
+    const res = await axios.get(`${GET_DISPATCH_ORDER}${restaurant}`);
     const { count } = res.data;
     if (count !== null) {
       setActiveCount(count);
@@ -64,9 +63,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchcompletedorders = async (restaurant) => {
-    const res = await axios.get(
-      'http://54.146.133.108:5000/api/orders/completed/' + restaurant
-    );
+    const res = await axios.get(`${ORDERS}completed/${restaurant}`);
     const { count } = res.data;
     if (count !== null) {
       setCompleteCount(count);
@@ -74,9 +71,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchcancelledcount = async (restaurant) => {
-    const res = await axios.get(
-      'http://54.146.133.108:5000/api/orders/cancelled/' + restaurant
-    );
+    const res = await axios.get(`${ORDERS}cancelled/${restaurant}`);
     const { count } = res.data;
     if (count !== null) {
       setCancelledCount(count);
@@ -84,9 +79,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchStats = async (restaurant) => {
-    const res = await axios.get(
-      'http://54.146.133.108:5000/api/orders/dashboard/' + restaurant
-    );
+    const res = await axios.get(`${ORDERS}dashboard/${restaurant}`);
     const dashboard = res.data;
     if (dashboard !== null) {
       setDashboard(dashboard);
@@ -94,7 +87,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchCommission = async () => {
-    const resp = await axios.get('http://54.146.133.108:5000/api/checkout');
+    const resp = await axios.get(`${BASE_URL}/api/checkout`);
     const { commission } = resp.data.data[0];
     if (commission !== null) {
       setCommission(commission);
@@ -102,9 +95,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchRejectedcount = async (restaurant) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/orders/rejected/' + restaurant
-    );
+    const response = await axios.get(`${ORDERS}rejected/${restaurant}`);
     const { count } = response.data;
     if (count !== null) {
       setRejected(count);
@@ -112,9 +103,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchNotStartedcount = async (restaurant) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/orders/accepted/' + restaurant
-    );
+    const response = await axios.get(`${ORDERS}/accepted/${restaurant}`);
     const { count } = response.data;
     if (count !== null) {
       setNotStarted(count);
@@ -122,10 +111,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const getuserByType = async (restaurant) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/chefdashboard/getusertypesbyrestaurant/' +
-      restaurant
-    );
+    const response = await axios.get(`${GET_USER_BY_TYPES}${restaurant}`);
     const { newusers, repeatedUsers } = response.data;
     if (newusers !== null && repeatedUsers !== null) {
       setnewUser(newusers);
@@ -134,9 +120,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchVisit = async (restaurant) => {
-    const response = await axios.get(
-      'http://54.146.133.108:5000/api/chefdashboard/' + restaurant
-    );
+    const response = await axios.get(`${BASE_URL}/api/chefdashboard/`);
     const { totalOrders, orders, accptanceRate, rectanceRate, dashboard, due } =
       response.data;
     const { menuvisits, cartVisit } = dashboard;
@@ -156,7 +140,7 @@ export default function Dashboard({ navigation }) {
   };
 
   const getAddOnCounts = async (id) => {
-    const res = await axios.get('http://54.146.133.108:5000/api/orders/');
+    const res = await axios.get(`${ORDERS}`);
     let orders = res.data;
     orders = orders.filter(
       (item) => item.restaurant_id === id && item.status !== 'rejected'

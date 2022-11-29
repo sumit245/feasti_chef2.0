@@ -17,6 +17,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import Loader from "../../helpers/Loader";
 import AddEditAddOns from "./AddEditAddOns";
+import { RESTAURANT_URL } from "../../EndPoints";
 
 export default function AddEditMeals({
   meal,
@@ -109,9 +110,8 @@ export default function AddEditMeals({
       ? dataToUpload.splice(index, 0, data)
       : dataToUpload.splice(index, 1, data);
 
-   await setMeals(dataToUpload);
-    const respone = await axios.put(
-      "http://54.146.133.108:5000/api/newrest/" + restaurant._id,
+    await setMeals(dataToUpload);
+    const respone = await axios.put(`${RESTAURANT_URL}${restaurant._id}`,
       {
         meals: meals,
       }
@@ -128,14 +128,14 @@ export default function AddEditMeals({
       { add_on_name: "", add_on_price: "", add_on_image: "" },
     ]);
   };
-  
+
   const handleRemoveClicked = () => {
     const values = [...addOns];
     values.pop();
     setAddOns(values);
   };
 
-  const saveHandler = () => {};
+  const saveHandler = () => { };
 
   if (loading) {
     return (

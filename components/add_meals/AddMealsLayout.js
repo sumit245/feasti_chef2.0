@@ -10,6 +10,7 @@ import Icon from "react-native-vector-icons/Ionicons"
 import { LinearGradient } from "expo-linear-gradient";
 import AddEditMeals from "./AddEditMeals";
 import axios from "axios";
+import { RESTAURANT_URL } from "../../EndPoints";
 
 export default function AddMealsLayout({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
@@ -31,9 +32,7 @@ export default function AddMealsLayout({ navigation }) {
   const { restaurant_id } = restaurant;
   
   const fetchMeals = async (id) => {
-    const response = await axios.get(
-      "http://54.146.133.108:5000/api/newrest/getchefbyId/" + id
-    );
+    const response = await axios.get(`${RESTAURANT_URL}${id}`);
     const { data } = response;
     const { meals } = data;
     setMeals(meals);
