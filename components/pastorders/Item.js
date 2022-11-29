@@ -103,7 +103,7 @@ const Item = ({ item, index, navigation }) => {
 
           <Text style={styles.cardText}>
             Total:
-            <Text style={styles.field}>${item.total}</Text>
+            <Text style={styles.field}>${parseFloat(item.total).toFixed(2)}</Text>
           </Text>
         </View>
         <View
