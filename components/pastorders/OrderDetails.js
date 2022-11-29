@@ -88,7 +88,7 @@ export default function OrderDetails({ route, navigation }) {
             </View>
           </View>
           {
-            item.isDelivery ? (
+            order.isDelivery ? (
               <View style={styles.row}>
                 <View style={styles.headerRows}>
                   <Text style={styles.text}>Deliver to</Text>
@@ -96,10 +96,9 @@ export default function OrderDetails({ route, navigation }) {
                     {(address_type || "") +
                       ", " +
                       (addressLine1 || "") +
-                      ", " +
-                      (city || "") +
                       "\n " +
-                      (locality || "") +
+                      (city || "") +
+                      
                       ", " +
                       (postal_code || "")}
                   </Text>
