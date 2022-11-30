@@ -52,7 +52,7 @@ export default function Plans() {
       let { price_plans } = profile
       const { plans } = price_plans.filter((price) => price.category === slot)
       console.log('====================================');
-      console.log(plans);
+      console.log(price_plans);
       console.log('====================================');
       setPlans(plans)
       setLoaded(true)
