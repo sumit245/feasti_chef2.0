@@ -21,6 +21,7 @@ export default function Plans() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
   const [slot, setSlot] = useState("Lunch")
+  const [loaded, setLoaded] = useState(false)
 
 
   const [plans, setPlans] = useState([])
@@ -45,9 +46,14 @@ export default function Plans() {
   };
 
   useEffect(() => {
-    let { price_plans } = profile
-    const { plans } = price_plans.filter((price) => price.category === slot)
-    setPlans(plans)
+    let componentMounted = true
+    if (componentMounted) {
+      setLoaded(false)
+      let { price_plans } = profile
+      const { plans } = price_plans.filter((price) => price.category === slot)
+      setPlans(plans)
+      setLoaded(true)
+    }
   }, [profile, plans])
 
   return (
@@ -80,20 +86,20 @@ export default function Plans() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
           </TouchableOpacity>
-          {
-            plans.map((item, index) => (
+          {loaded &&
+            plans.map((plan, index) => (
               <View key={index}>
                 <View style={styles.labelContainer}>
-                  <Text style={styles.label}>{item.plan_name}</Text>
+                  <Text style={styles.label}>{plan.plan_name}</Text>
                 </View>
                 <View style={styles.planContainer}>
                   <Icon name="ios-logo-usd" size={16} color="#000" />
                   <TextInput
-                    value={item.base_price}
+                    value={plan.base_price}
                     editable={editable}
                     selectionColor="#ff6600"
                     style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
-                    onChangeText={(e) => setTwoPlan(e)}
+                    // onChangeText={(e) => setTwoPlan(e)}
                     keyboardType="numeric"
                   />
                 </View>
