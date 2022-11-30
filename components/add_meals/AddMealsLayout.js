@@ -39,10 +39,6 @@ export default function AddMealsLayout({ navigation }) {
     const response = await axios.get(`${RESTAURANT_URL}${id}`);
     let { meals } = response.data;
     const { items } = meals.filter((item) => item.category === slot)[0]
-
-    console.log('====================================');
-    console.log(items);
-    console.log('====================================');
     setMeals(items);
   };
   useEffect(() => {
@@ -67,13 +63,10 @@ export default function AddMealsLayout({ navigation }) {
     let day = meals.map((data, key) => data.day);
   }, [meals, addState, editState]);
 
-  const handleToggle = (data) => {
-    setSlot(data);
-  };
-
   const changeEditState = (state) => {
     setEditState(state);
   };
+  
   const onChangeAddHandler = (state) => {
     setAddState(state);
   };
@@ -265,6 +258,7 @@ export default function AddMealsLayout({ navigation }) {
         break;
     }
   };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#fff", width: "100%", paddingHorizontal: 4, alignItems: "center" }}>
