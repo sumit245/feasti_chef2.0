@@ -51,6 +51,9 @@ export default function Plans() {
       setLoaded(false)
       let { price_plans } = profile
       const { plans } = price_plans.filter((price) => price.category === slot)
+      console.log('====================================');
+      console.log(plans);
+      console.log('====================================');
       setPlans(plans)
       setLoaded(true)
     }
@@ -86,7 +89,7 @@ export default function Plans() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
           </TouchableOpacity>
-          {loaded &&
+          {/* {loaded &&
             plans.map((plan, index) => (
               <View key={index}>
                 <View style={styles.labelContainer}>
@@ -105,7 +108,7 @@ export default function Plans() {
                 </View>
               </View>
             ))
-          }
+          } */}
         </KeyboardAvoidingView>
       </Collapsible>
     </>
