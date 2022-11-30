@@ -51,13 +51,10 @@ export default function Plans() {
       setLoaded(false)
       let { price_plans } = profile
       const { plans } = price_plans.find((price) => price.category === slot)
-      console.log('====================================');
-      console.log(plans);
-      console.log('====================================');
       setPlans(plans)
       setLoaded(true)
     }
-  }, [profile, plans])
+  }, [profile, plans, slot])
 
   return (
     <>
@@ -84,7 +81,7 @@ export default function Plans() {
         >
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 4 }}>
             <View>
-            <ToggleLunchDinner handleToggle={(value) => setSlot(value)} /> 
+              <ToggleLunchDinner handleToggle={(value) => setSlot(value)} />
             </View>
             <TouchableOpacity onPress={editHandler}>
               <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
