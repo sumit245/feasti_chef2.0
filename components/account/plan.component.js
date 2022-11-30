@@ -50,9 +50,9 @@ export default function Plans() {
     if (componentMounted) {
       setLoaded(false)
       let { price_plans } = profile
-      const { plans } = price_plans.filter((price) => price.category === slot)
+      const plan = price_plans.filter((price) => price.category === slot)
       console.log('====================================');
-      console.log(price_plans);
+      console.log(plan);
       console.log('====================================');
       setPlans(plans)
       setLoaded(true)
