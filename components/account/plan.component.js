@@ -82,13 +82,14 @@ export default function Plans() {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <ToggleLunchDinner handleToggle={(value) => setSlot(value)} />
-          <TouchableOpacity
-            style={{ alignSelf: "flex-end" }}
-            onPress={editHandler}
-          >
-            <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 4 }}>
+            <View>
+            <ToggleLunchDinner handleToggle={(value) => setSlot(value)} /> 
+            </View>
+            <TouchableOpacity onPress={editHandler}>
+              <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
+            </TouchableOpacity>
+          </View>
           {loaded &&
             plans.map((plan, index) => (
               <View key={index}>
