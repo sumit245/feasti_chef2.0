@@ -89,7 +89,7 @@ export default function Plans() {
           >
             <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
           </TouchableOpacity>
-          {/* {loaded &&
+          {loaded &&
             plans.map((plan, index) => (
               <View key={index}>
                 <View style={styles.labelContainer}>
@@ -108,7 +108,7 @@ export default function Plans() {
                 </View>
               </View>
             ))
-          } */}
+          }
         </KeyboardAvoidingView>
       </Collapsible>
     </>
