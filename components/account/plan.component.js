@@ -56,9 +56,8 @@ export default function Plans() {
     }
   }, [profile, slot])
   const onChangePlan = (index, e) => {
-    const { name, value } = e.target
     console.log('====================================');
-    console.log(name, index, value);
+    console.log(index, e);
     console.log('====================================');
   }
   return (
