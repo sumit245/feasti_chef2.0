@@ -35,12 +35,15 @@ export default function Plans() {
   const editHandler = () => {
     setEditable(!editable);
     if (editable) {
-      let restaurant = {
-        base_2price: twoPlan,
-        base_15price: fifteenPlan,
-        base_30price: thirtyPlan
-      }
-      dispatch(editBankInfo(_id, restaurant))
+      console.log('====================================');
+      console.log(plans);
+      console.log('====================================');
+      // let restaurant = {
+      //   base_2price: twoPlan,
+      //   base_15price: fifteenPlan,
+      //   base_30price: thirtyPlan
+      // }
+      // dispatch(editBankInfo(_id, restaurant))
 
     }
   };
