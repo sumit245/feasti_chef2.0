@@ -54,7 +54,7 @@ export default function Plans() {
       setPlans(plans)
       setLoaded(true)
     }
-  }, [profile, plans, slot])
+  }, [profile, slot])
 
   return (
     <>
