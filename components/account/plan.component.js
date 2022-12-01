@@ -57,12 +57,9 @@ export default function Plans() {
   }, [profile, slot])
 
   const onChangePlan = (index, e) => {
-    console.log('====================================');
-    console.log(plans);
-    console.log('====================================');
-    console.log('====================================');
-    console.log(index, e);
-    console.log('====================================');
+    let updateArray = plan
+    updateArray[index].base_price = e
+    setPlans(updateArray)
   }
   return (
     <>
