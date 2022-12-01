@@ -55,7 +55,11 @@ export default function Plans() {
       setLoaded(true)
     }
   }, [profile, slot])
+
   const onChangePlan = (index, e) => {
+    console.log('====================================');
+    console.log(plans);
+    console.log('====================================');
     console.log('====================================');
     console.log(index, e);
     console.log('====================================');
@@ -78,6 +82,7 @@ export default function Plans() {
           />
         </TouchableOpacity>
       </View>
+
       <Collapsible collapsed={isCollapsed}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -91,6 +96,7 @@ export default function Plans() {
               <FontAwesome name={editable ? "save" : "pencil"} size={20} color={editable ? "#ff6600" : "#000"} />
             </TouchableOpacity>
           </View>
+
           {loaded &&
             plans.map((plan, index) => (
               <View key={index}>
