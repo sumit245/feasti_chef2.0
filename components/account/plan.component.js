@@ -12,7 +12,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from "react-redux";
 import { styles } from "./account.styles";
-import { editBankInfo } from "../../actions/actions";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 
 export default function Plans() {
@@ -35,9 +34,9 @@ export default function Plans() {
   const editHandler = () => {
     setEditable(!editable);
     if (editable) {
-      let { price_plans } = profile
+      let { price_plans, restaurant_id } = profile
       console.log('====================================');
-      console.log(price_plans);
+      console.log(restaurant_id);
       console.log('====================================');
       // let restaurant = {
       //   base_2price: twoPlan,
