@@ -35,8 +35,9 @@ export default function Plans() {
   const editHandler = () => {
     setEditable(!editable);
     if (editable) {
+      let { price_plans } = profile
       console.log('====================================');
-      console.log(plans);
+      console.log(price_plans);
       console.log('====================================');
       // let restaurant = {
       //   base_2price: twoPlan,
