@@ -58,7 +58,7 @@ export default function Plans() {
 
   const onChangePlan = (index, e) => {
     let updateArray = plans
-    // updateArray[index].base_price = e
+    updateArray[index].base_price = e
     console.log(updateArray)
     // setPlans(updateArray)
   }
