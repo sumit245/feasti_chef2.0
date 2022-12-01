@@ -56,11 +56,11 @@ export default function Plans() {
     }
   }, [profile, slot])
 
-  const onChangePlan = (index, e) => {
+  const onChangePlan = (e, index) => {
     let updateArray = [...plans]
-    // updateArray[index].base_price = 12
+    updateArray[index].base_price = e
     console.log(updateArray)
-    // setPlans(updateArray)
+    setPlans(updateArray)
   }
   return (
     <>
