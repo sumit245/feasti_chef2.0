@@ -55,7 +55,12 @@ export default function Plans() {
       setLoaded(true)
     }
   }, [profile, slot])
-
+  const onChangePlan = (index, e) => {
+    const { name, value } = e.target
+    console.log('====================================');
+    console.log(name, index, value);
+    console.log('====================================');
+  }
   return (
     <>
       <View style={styles.row}>
@@ -100,7 +105,7 @@ export default function Plans() {
                     editable={editable}
                     selectionColor="#ff6600"
                     style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
-                    // onChangeText={(e) => setTwoPlan(e)}
+                    onChangeText={(e) => onChangePlan(e, index)}
                     keyboardType="numeric"
                   />
                 </View>
