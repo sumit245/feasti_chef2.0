@@ -35,8 +35,10 @@ export default function Plans() {
     setEditable(!editable);
     if (editable) {
       let { price_plans, restaurant_id } = profile
+      let arrayUpdate = [...price_plans]
+      arrayUpdate = arrayUpdate.find((plan) => plan.category === slot)
       console.log('====================================');
-      console.log(restaurant_id);
+      console.log(arrayUpdate);
       console.log('====================================');
       // let restaurant = {
       //   base_2price: twoPlan,
