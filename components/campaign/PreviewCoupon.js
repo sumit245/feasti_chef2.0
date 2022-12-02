@@ -52,8 +52,7 @@ export default function PreviewCoupon({ navigation, route }) {
         duration: diff + " Days",
         isAdmin: false
       };
-      console.log(promo)
-      const response = await axios.post(`${COUPON_URL}`, { promo });
+      const response = await axios.post(`${COUPON_URL}`, promo);
       const coupon = await response.data;
       promo.status = await coupon.data.status;
 
