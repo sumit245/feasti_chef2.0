@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import Loader from "../../helpers/Loader";
 import axios from "axios";
 import { Checkbox, Divider } from "react-native-paper";
-import { useState } from "react";
 import moment from "moment";
 import { LinearGradient } from "expo-linear-gradient";
 import { DARKGRAY } from "../../Colors";
