@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, TouchableOpacity, Alert } from "react-native";
 import HeaderTwo from "../header/HeaderTwo";
 import { styles } from "./campaign.styles";
@@ -81,6 +81,12 @@ export default function PreviewCoupon({ navigation, route }) {
       ],
       { cancelable: true, onDismiss: () => navigation.navigate("Growth") })
   }
+  useEffect(() => {
+    console.log('====================================');
+    console.log(promo);
+    console.log('====================================');
+  }, [])
+
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
