@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, FlatList } from "react-native";
 import TrackPerfContent from "./TrackPerfContent";
 import Shop from "react-native-vector-icons/Entypo";
-import { DARKGRAY, SecondaryLightColor } from "../../Colors";
 import { styles } from "./campaign.styles";
 import moment from "moment";
 export default function ListExpired({
