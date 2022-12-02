@@ -37,10 +37,7 @@ export default function PreviewCoupon({ navigation, route }) {
     } else {
       setLoading(false);
       const { _id, restaurant_id, } = await restaurant;
-      // const price =
-      // plan === 2 ? base_2price : plan === 15 ? base_15price : base_30price;
       let discountType = type === "net" ? "$" : "%";
-      // let absoluteValue = type === "net" ? discount : (price * discount) / 100;
       let diff = moment(end_date).diff(moment(start_date), "days");
       diff = diff + 1;
       let promo = {
@@ -49,23 +46,22 @@ export default function PreviewCoupon({ navigation, route }) {
         plan_name: plan + " Meals",
         promo_code: code,
         discount_type: discountType,
-        // absolute_value: absoluteValue,
         start_date: start_date,
         end_date: end_date,
-        // price: price,
         discount: discount,
         duration: diff + " Days",
+        isAdmin: false
       };
       console.log(promo)
-      // const response = await axios.post(`${COUPON_URL}`, { promo });
-      // const coupon = await response.data;
-      // promo.status = await coupon.data.status;
+      const response = await axios.post(`${COUPON_URL}`, { promo });
+      const coupon = await response.data;
+      promo.status = await coupon.data.status;
 
-      // setLoading(true);
-      // navigation.navigate("submit_coupon", {
-      //   promo,
-      //   promo_name: "promo coupon"
-      // });
+      setLoading(true);
+      navigation.navigate("submit_coupon", {
+        promo,
+        promo_name: "promo coupon"
+      });
     }
   };
 
