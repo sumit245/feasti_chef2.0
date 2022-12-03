@@ -13,6 +13,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useSelector, useDispatch } from "react-redux";
 import { styles } from "./account.styles";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
+import { updatePlansPrice } from "../../actions/actions";
 
 export default function Plans() {
   const profile = useSelector((state) => state.restaurant);
@@ -25,29 +26,8 @@ export default function Plans() {
 
   const [plans, setPlans] = useState([])
 
-  const { _id } = profile;
-
-  const dispatch = useDispatch()
-
-
-
   const editHandler = () => {
     setEditable(!editable);
-    if (editable) {
-      let { price_plans, restaurant_id } = profile
-      let arrayUpdate = [...price_plans]
-      arrayUpdate = arrayUpdate.find((plan) => plan.category === slot)
-      console.log('====================================');
-      console.log(arrayUpdate);
-      console.log('====================================');
-      // let restaurant = {
-      //   base_2price: twoPlan,
-      //   base_15price: fifteenPlan,
-      //   base_30price: thirtyPlan
-      // }
-      // dispatch(editBankInfo(_id, restaurant))
-
-    }
   };
 
   useEffect(() => {
@@ -66,10 +46,9 @@ export default function Plans() {
     updateArray[index].base_price = e
     setPlans(updateArray)
   }
-  const updatePrice = (e, index) => {
-    console.log('====================================');
-    console.log(plans[index].base_price, index, slot);
-    console.log('====================================');
+  const updatePrice = async (index) => {
+    const { restaurant_id } = profile
+    await updatePlansPrice(restaurant_id, slot, plans[index].base_price, index)
   }
 
   return (
@@ -120,7 +99,7 @@ export default function Plans() {
                     style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
                     onChangeText={(e) => onChangePlan(e, index)}
                     keyboardType="numeric"
-                    onEndEditing={(e) => updatePrice(e, index)}
+                    onEndEditing={() => updatePrice(index)}
                   />
                 </View>
               </View>

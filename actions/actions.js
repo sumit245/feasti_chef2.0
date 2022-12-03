@@ -1,4 +1,4 @@
-import { ORDERS, RESTAURANT_LOGIN, RESTAURANT_URL } from "../EndPoints";
+import { ORDERS, RESTAURANT_LOGIN, RESTAURANT_URL, UPDATE_PRICE } from "../EndPoints";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -7,7 +7,7 @@ export const ENTRY_METHOD = "ENTRY_METHOD";
 export const GET_ORDER = "GET_ORDER";
 export const SET_RESTAURANT = "SET_RESTAURANT";
 export const SET_STATUS = "SET_STATUS";
-export const SET_PLANS="SET_PLANS"
+export const SET_PLANS = "SET_PLANS"
 
 export const loginMethod = (phone, navigation) => async (dispatch) => {
   const response = await axios.post(RESTAURANT_LOGIN, { phone });
@@ -53,7 +53,7 @@ export const getOrder = (restaurant) => async (dispatch) => {
   );
   if (orders !== null) {
     dispatch({ type: GET_ORDER, payload: neworders });
-    
+
   }
 };
 
@@ -63,6 +63,7 @@ export const editBankInfo = (id, bankInfo) => async (dispatch) => {
   await AsyncStorage.setItem("restaurant", JSON.stringify(data));
   dispatch({ type: SET_RESTAURANT, payload: data });
 };
+
 export const changeStatus = (id, status) => async (dispatch) => {
   const response = await axios.put(RESTAURANT_URL + id, status);
   const data = await response.data;
@@ -70,3 +71,14 @@ export const changeStatus = (id, status) => async (dispatch) => {
   dispatch({ type: SET_RESTAURANT, payload: data });
 };
 
+export const updatePlansPrice = async (id, slot, base_price, index) => {
+  const response = await axios.put(`${UPDATE_PRICE}${id}`, {
+    index: index,
+    category: slot,
+    base_price: base_price
+  })
+  const { msg } = response.data
+  console.log('====================================');
+  console.log(msg);
+  console.log('====================================');
+}
