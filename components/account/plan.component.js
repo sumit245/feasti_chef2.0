@@ -68,7 +68,7 @@ export default function Plans() {
   }
   const updatePrice = (e, index) => {
     console.log('====================================');
-    console.log(e, index, slot);
+    console.log(plan.base_price, index, slot);
     console.log('====================================');
   }
 
