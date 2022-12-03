@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import Shop from 'react-native-vector-icons/Entypo';
 import { styles } from './campaign.styles';
