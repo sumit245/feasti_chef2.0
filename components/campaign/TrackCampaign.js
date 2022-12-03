@@ -30,22 +30,16 @@ export default function TrackCampaign({ route, navigation }) {
     setLoaded(true);
   };
 
-  const fetchMyExpiredBanner = async (restaurant_id) => {
-    const response = await axios.get(`${DASHBOARD_URL}${restaurant_id}`);
-    const { dashboard } = response.data;
-    const { banners } = dashboard;
-    setBanner(banners);
-  };
 
   useEffect(() => {
-    fetchMyBanner(restaurant_id, "Active");
+    fetchMyBanner(restaurant_id, "active");
   }, [restaurant_id, index]);
 
   const fetchData = () => {
     if (index == 0) {
       setIndex(1);
       setPos(1);
-      fetchMyBanner(restaurant_id, 'Active');
+      fetchMyBanner(restaurant_id, 'active');
     } else {
       setIndex(0);
       setPos(0);
