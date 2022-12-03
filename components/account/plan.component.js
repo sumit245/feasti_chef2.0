@@ -66,6 +66,11 @@ export default function Plans() {
     updateArray[index].base_price = e
     setPlans(updateArray)
   }
+  const updatePrice = (e, index) => {
+    console.log('====================================');
+    console.log(e, index, slot);
+    console.log('====================================');
+  }
 
   return (
     <>
@@ -115,6 +120,7 @@ export default function Plans() {
                     style={[styles.inputContainer, { marginHorizontal: 0, marginVertical: 0, flex: 1 }]}
                     onChangeText={(e) => onChangePlan(e, index)}
                     keyboardType="numeric"
+                    onEndEditing={(e) => updatePrice(e, index)}
                   />
                 </View>
               </View>
