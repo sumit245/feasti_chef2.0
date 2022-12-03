@@ -1,7 +1,6 @@
 import moment from "moment";
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { SecondaryColor } from "../../Colors";
+import { View, Text } from "react-native";
 import { styles } from "./campaign.styles";
 
 export default function TrackCampaignHead({
@@ -91,11 +90,11 @@ export default function TrackCampaignHead({
           >
             ${rpc}/click
           </Text>
-          <Text style={[styles.smallText, { color: "#fff",  }]}>
-          {day} Days
-        </Text>
+          <Text style={[styles.smallText, { color: "#fff", }]}>
+            {day} Days
+          </Text>
         </View>
-        
+
         <View style={{ position: "absolute", top: 60, right: 8 }}>
           <View style={styles.progressDonught}>
             <Text style={{ fontWeight: "bold", fontSize: 14 }}>
