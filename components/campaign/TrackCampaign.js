@@ -23,11 +23,10 @@ export default function TrackCampaign({ route, navigation }) {
   const { title } = route.params;
   let address = locality + ', ' + city + ', ' + state;
 
-  const fetchMyBanner = async (restaurant_id) => {
-    const response = await axios.get(`${PROMO_URL}${restaurant_id}`);
+  const fetchMyBanner = async (restaurant_id, status) => {
+    const response = await axios.get(`${PROMO_URL}${restaurant_id}/${status}`);
     const { data } = response;
-    let banners = data.filter((item) => item.status === 'active');
-    setBanner(banners);
+    setBanner(data);
     setLoaded(true);
   };
 
@@ -39,18 +38,18 @@ export default function TrackCampaign({ route, navigation }) {
   };
 
   useEffect(() => {
-    fetchMyBanner(restaurant_id);
+    fetchMyBanner(restaurant_id, "Active");
   }, [restaurant_id, index]);
 
   const fetchData = () => {
     if (index == 0) {
       setIndex(1);
       setPos(1);
-      fetchMyExpiredBanner(restaurant_id);
+      fetchMyBanner(restaurant_id, 'Active');
     } else {
       setIndex(0);
       setPos(0);
-      fetchMyBanner(restaurant_id);
+      fetchMyBanner(restaurant_id, 'Inactive');
     }
   };
   const [index, setIndex] = React.useState(0);
