@@ -7,7 +7,7 @@ import { styles } from './campaign.styles';
 import axios from 'axios';
 import Loader from '../../helpers/Loader';
 import ListExpireBanners from './ListExpireBanners';
-import { DASHBOARD_URL, PROMO_URL } from '../../EndPoints';
+import { PROMO_URL } from '../../EndPoints';
 
 export default function TrackCampaign({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);

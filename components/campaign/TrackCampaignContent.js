@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { SecondaryLightColor, DARKGRAY } from "../../Colors";
+import { DARKGRAY } from "../../Colors";
 import { styles } from "./campaign.styles";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
