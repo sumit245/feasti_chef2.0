@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Platform, SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { useSelector } from 'react-redux';
 import HeaderTwo from '../header/HeaderTwo';
@@ -7,7 +7,7 @@ import { styles } from './campaign.styles';
 import axios from 'axios';
 import ListExpired from './ListExpired';
 import { Provider } from 'react-native-paper';
-import { DASHBOARD_URL, GET_COUPON_CHEF } from '../../EndPoints';
+import { GET_COUPON_CHEF } from '../../EndPoints';
 
 export default function TrackPerformance({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
