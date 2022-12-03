@@ -33,7 +33,6 @@ function TrackCampaignContent({ banners, loaded, index }) {
       moment(),
       "Days"
     );
-    console.log("Remaining", remaining);
     return (
       <View
         style={{

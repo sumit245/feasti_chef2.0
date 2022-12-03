@@ -39,11 +39,12 @@ export default function TrackCampaign({ route, navigation }) {
     if (index == 0) {
       setIndex(1);
       setPos(1);
-      fetchMyBanner(restaurant_id, 'active');
+      fetchMyBanner(restaurant_id, 'Inactive');
     } else {
       setIndex(0);
       setPos(0);
-      fetchMyBanner(restaurant_id, 'Inactive');
+      fetchMyBanner(restaurant_id, 'active');
+
     }
   };
   const [index, setIndex] = React.useState(0);
