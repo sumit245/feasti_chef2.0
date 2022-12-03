@@ -72,12 +72,8 @@ export default function PreviewCoupon({ navigation, route }) {
       ],
       { cancelable: true, onDismiss: () => navigation.navigate("Growth") })
   }
-  useEffect(() => {
-    console.log('====================================');
-    console.log(promo);
-    console.log('====================================');
-  }, [])
 
+  
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>

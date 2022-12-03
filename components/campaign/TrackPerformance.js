@@ -35,10 +35,15 @@ export default function TrackPerformance({ route, navigation }) {
       setUnique(unique);
       setloaded(true);
     } else {
-      const dashboardResponse = await axios.get(`${DASHBOARD_URL}${restaurant}`);
-      const dashres = await dashboardResponse.data;
-      const { coupons } = dashres.dashboard;
+      const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Inactive`);
+      const { data } = response;
+      const { coupons, promotedOrders, revenue, discount, unique } = data;
+      setPromotedOrders(promotedOrders.length);
       setCoupon(coupons);
+      setRevenue(revenue);
+      setDiscount(discount);
+      setUnique(unique);
+      setloaded(true);
     }
   };
 
