@@ -7,7 +7,6 @@ import { styles } from './campaign.styles';
 import axios from 'axios';
 import ListExpired from './ListExpired';
 import { Provider } from 'react-native-paper';
-import ListExpiredCoupons from './ListExpiredCoupons';
 import { DASHBOARD_URL, GET_COUPON_CHEF } from '../../EndPoints';
 
 export default function TrackPerformance({ route, navigation }) {
