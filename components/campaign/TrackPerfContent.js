@@ -201,7 +201,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${parseFloat(revenue) - parseFloat(discount)}</Text>
+              <Text style={styles.bigText}> ${parseFloat(revenue || 0) - parseFloat(discount || 0)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Net Income</Text>
             </View>
           </View>
@@ -210,7 +210,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${revenue}</Text>
+              <Text style={styles.bigText}> ${parseFloat(revenue || 0).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Base Income</Text>
             </View>
           </View>
@@ -218,7 +218,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${discount}</Text>
+              <Text style={styles.bigText}> ${parseFloat(discount||0).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Discount Paid</Text>
             </View>
           </View>
