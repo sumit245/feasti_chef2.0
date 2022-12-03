@@ -103,14 +103,18 @@ export default function TrackPerformance({ route, navigation }) {
 
       case 'second':
         return (
-          <ListExpiredCoupons
+          <ListExpired
             restaurant={restaurant_name}
             address={address}
-            banners={coupon}
-            active={false}
+            active={true}
             loaded={loaded}
+            banners={coupon}
+            promotedOrders={totalOrders}
             status={route.title}
             title={title}
+            revenue={revenue}
+            discount={discount}
+            unique={unique}
           />
         );
 
