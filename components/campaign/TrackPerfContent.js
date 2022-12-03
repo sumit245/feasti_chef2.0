@@ -2,14 +2,13 @@ import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { View, Text, Alert } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { DARKGRAY, SecondaryLightColor } from "../../Colors";
+import { DARKGRAY } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import CustomAlert from "../../helpers/CustomAlert.js";
 import { useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
-import { COUPON_URL, DASHBOARD_URL, RESTAURANT_URL } from "../../EndPoints";
+import { COUPON_URL, } from "../../EndPoints";
 
 function TrackPerfContent({
   banners,
@@ -71,19 +70,6 @@ function TrackPerfContent({
 
     const couponresponse = await axios.put(`${COUPON_URL}${id}`, { status: "Inactive" });
 
-    const restaurantUpdate = await axios.put(`${RESTAURANT_URL}${_id}`, { promo: [] }
-    );
-
-    const dashboardResponse = await axios.get(`${DASHBOARD_URL}${restaurant_id}`);
-
-    const { dashboard } = await dashboardResponse.data;
-    const { coupons } = dashboard
-    let prevCoupons = [...coupons];
-    prevCoupons.push(myCoupon);
-    const updateDashboard = await axios.put(`${DASHBOARD_URL}${restaurant_name}/${dashboard._id}`, { coupons: prevCoupons }
-    );
-
-    const { status } = updateDashboard;
     if (status === 200) {
       setCancel(false);
     }
