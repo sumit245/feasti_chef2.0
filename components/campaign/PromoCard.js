@@ -35,57 +35,19 @@ export default function PromoCard({
             <Text style={{ fontWeight: "bold", fontSize: 16, padding: 2 }}>
               {head}
             </Text>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  color: DARKGRAY,
-                  fontSize: 12,
-                  marginLeft: 4,
-                }}
-              >
-                {subhead} days
-              </Text>
-              {content && (
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    color: "#ff6600",
-                    fontSize: 12,
-                    textAlign: "right",
-                    marginLeft: "50%",
-                  }}
-                >
-                  ${content} /click
-                </Text>
-              )}
+            <View style={styles.actionContainer}>
+              <Text style={styles.subheadText}>{subhead} days</Text>
+              {content && <Text style={styles.rateText}> ${content} /click</Text>}
             </View>
           </View>
         </View>
         <Divider />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.actionContainer}>
           {cancel ? (
-            <TouchableOpacity
-              style={{
-                borderRightWidth: 0.5,
-                borderRightColor: "#777",
-                paddingHorizontal: 10,
-                marginVertical: 4,
-                height: 24,
-              }}
-            >
+            <TouchableOpacity style={styles.cancelButton}>
               <Text
                 style={[styles.promoaction, { color: "#000" }]}
-                onPress={cancelHandler}
-              >
+                onPress={cancelHandler}>
                 {cancel}
               </Text>
             </TouchableOpacity>
@@ -93,9 +55,7 @@ export default function PromoCard({
             <View />
           )}
 
-          <Text style={styles.promoaction} onPress={okHandler}>
-            {ok}
-          </Text>
+          <Text style={styles.promoaction} onPress={okHandler}>{ok}</Text>
         </View>
       </View>
     </View>
@@ -126,4 +86,29 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: 4,
   },
+  cancelButton: {
+    borderRightWidth: 0.5,
+    borderRightColor: "#777",
+    paddingHorizontal: 10,
+    marginVertical: 4,
+    height: 24,
+  },
+  actionContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  rateText: {
+    fontWeight: "bold",
+    color: "#ff6600",
+    fontSize: 12,
+    textAlign: "right",
+    marginLeft: "50%",
+  },
+  subheadText: {
+    fontWeight: "bold",
+    color: DARKGRAY,
+    fontSize: 12,
+    marginLeft: 4,
+  }
 });
