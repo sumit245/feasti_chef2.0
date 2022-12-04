@@ -21,7 +21,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BASE_URL, DASHBOARD_URL, GET_DISPATCH_ORDER, GET_USER_BY_TYPES, ORDERS } from '../../EndPoints';
 
 export default function Dashboard({ navigation }) {
-  const layout = useWindowDimensions();
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_name, city, restaurant_id } = restaurant;
+  const [totalOrders, setTotalOrders] = useState(0)
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
   const [cancelledcount, setCancelledCount] = useState(0);
@@ -34,48 +36,14 @@ export default function Dashboard({ navigation }) {
   const [acceptanceRate, setAcceptanceRate] = useState(0);
   const [rejectedRate, setRejectedRate] = useState(0);
   const [dashboard, setDashboard] = useState({});
-  const restaurant = useSelector((state) => state.restaurant);
-  const { restaurant_name, city, restaurant_id } = restaurant;
   const [index, setIndex] = React.useState(0);
   const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
   const [totalAddOns, setTotalAddOns] = useState(0);
   const [campaignDue, setCampaignDue] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
-  const [routes] = React.useState([
-    { key: 'first', title: 'Weekly' },
-    { key: 'second', title: 'Monthly' },
-    { key: 'third', title: 'yearly' },
-  ]);
+
   const [newUser, setnewUser] = useState(0);
   const [repeatedUser, setrepeatedUser] = useState(0);
-
-  function add(accumulator, a) {
-    return parseFloat(accumulator) + parseFloat(a);
-  }
-
-  const fetchOrders = async (restaurant) => {
-    const res = await axios.get(`${GET_DISPATCH_ORDER}${restaurant}`);
-    const { count } = res.data;
-    if (count !== null) {
-      setActiveCount(count);
-    }
-  };
-
-  const fetchcompletedorders = async (restaurant) => {
-    const res = await axios.get(`${ORDERS}completed/${restaurant}`);
-    const { count } = res.data;
-    if (count !== null) {
-      setCompleteCount(count);
-    }
-  };
-
-  const fetchcancelledcount = async (restaurant) => {
-    const res = await axios.get(`${ORDERS}cancelled/${restaurant}`);
-    const { count } = res.data;
-    if (count !== null) {
-      setCancelledCount(count);
-    }
-  };
 
   const fetchStats = async (restaurant) => {
     const res = await axios.get(`${ORDERS}dashboard/${restaurant}`);
@@ -93,21 +61,6 @@ export default function Dashboard({ navigation }) {
     }
   };
 
-  const fetchRejectedcount = async (restaurant) => {
-    const response = await axios.get(`${ORDERS}rejected/${restaurant}`);
-    const { count } = response.data;
-    if (count !== null) {
-      setRejected(count);
-    }
-  };
-
-  const fetchNotStartedcount = async (restaurant) => {
-    const response = await axios.get(`${ORDERS}/accepted/${restaurant}`);
-    const { count } = response.data;
-    if (count !== null) {
-      setNotStarted(count);
-    }
-  };
 
   const getuserByType = async (restaurant) => {
     const response = await axios.get(`${GET_USER_BY_TYPES}${restaurant}`);
@@ -118,94 +71,34 @@ export default function Dashboard({ navigation }) {
     }
   };
 
-  const fetchVisit = async (restaurant) => {
-    const response = await axios.get(`${BASE_URL}/api/chefdashboard/`);
-    const { totalOrders, orders, accptanceRate, rectanceRate, dashboard, due } =
-      response.data;
-    const { menuvisits, cartVisit } = dashboard;
-    if (
-      acceptanceRate !== null &&
-      rectanceRate !== null &&
-      totalOrders !== null &&
-      orders !== null
-    ) {
-      setCartConversion(totalOrders);
-      setMenuVisit(menuvisits);
-      setvisits(cartVisit);
-      setAcceptanceRate(accptanceRate);
-      setRejectedRate(rectanceRate);
-      setCampaignDue(due);
-    }
-  };
-
-  const getAddOnCounts = async (id) => {
-    const res = await axios.get(`${ORDERS}`);
-    let orders = res.data;
-    orders = orders.filter(
-      (item) => item.restaurant_id === id && item.status !== 'rejected'
-    );
-    let addOns = orders.map((el) => el.add_on);
-    addOns = [].concat.apply([], addOns);
-    const dimensions = [
-      addOns.length,
-      addOns.reduce((x, y) => Math.max(x, y.length), 0),
-    ];
-    let totalCount = 0;
-    if (dimensions[0] !== 0) {
-      addOns = addOns.reduce((prev, curr) => prev.concat(curr));
-      let quantities = addOns.length > 0 ? addOns.map((item) => item.qty) : [];
-      totalCount = quantities.reduce(add, 0);
-      setTotalAddOns(totalCount);
-      let prices = addOns.length > 0 ? addOns.map((item) => item.subtotal) : [];
-      let totalPrice = prices.reduce(add, 0);
-      setTotalAddOnRevenue(totalPrice);
-    } else {
-      setTotalAddOns(0);
-      setTotalAddOnRevenue(0);
-    }
-  };
-
   const fetchRevenue = async (id) => {
-    console.log('====================================');
-    console.log(id);
-    console.log('====================================');
     const response = await axios.get(`${DASHBOARD_URL}${id}`)
-    console.log('====================================');
-    console.log(response.data);
-    console.log('====================================');
-    // const {
-    //   totalorders,
-    //   acceptedCount,
-    //   pendingCount,
-    //   startedCount,
-    //   completedCount,
-    //   cancelledCount,
-    //   rejectedCount,
-    //   acceptanceRate,
-    //   rejectanceRate } = response.data
-    // console.log('====================================');
-    // console.log(totalorders, acceptedCount, acceptanceRate);
-    // console.log('====================================');
+    const {
+      totalorders,
+      acceptedCount,
+      startedCount,
+      completedCount,
+      cancelledCount,
+      rejectedCount,
+      acceptanceRate,
+      rejectanceRate } = response.data
+    setTotalOrders(totalorders)
+    setAcceptanceRate(acceptanceRate)
+    setActiveCount(startedCount)
+    setCompleteCount(completedCount)
+    setNotStarted(acceptedCount)
+    setCancelledCount(cancelledCount)
+    setRejected(rejectedCount)
+    setRejectedRate(rejectanceRate)
+
   }
 
-  useEffect(() => {
-    // getAddOnCounts(restaurant_id);
-    fetchRevenue(restaurant_id)
-  }, [restaurant_id]);
 
   useEffect(() => {
-    fetchCommission();
-  }, [commission]);
-
-  useEffect(() => {
-    fetchOrders(restaurant_id);
-    fetchcompletedorders(restaurant_id);
-    fetchcancelledcount(restaurant_id);
-    fetchVisit(restaurant_id);
-    fetchRejectedcount(restaurant_id);
-    fetchNotStartedcount(restaurant_id);
     fetchStats(restaurant_id);
+    fetchCommission();
     getuserByType(restaurant_name);
+    fetchRevenue(restaurant_id)
   }, [
     restaurant_name,
     restaurant_id,
@@ -218,16 +111,10 @@ export default function Dashboard({ navigation }) {
 
   const onRefresh = () => {
     setRefreshing(true);
-    fetchOrders(restaurant_id);
-    fetchcompletedorders(restaurant_id);
-    fetchcancelledcount(restaurant_id);
-    fetchVisit(restaurant_id);
-    fetchRejectedcount(restaurant_id);
-    fetchNotStartedcount(restaurant_id);
     fetchStats(restaurant_id);
-    getuserByType(restaurant_name);
     fetchCommission();
-    getAddOnCounts(restaurant_id);
+    getuserByType(restaurant_name);
+    fetchRevenue(restaurant_id)
     setRefreshing(false);
   };
 
