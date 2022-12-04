@@ -4,6 +4,7 @@ import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
 export default function StatCards({
+  totalSales,
   revenue,
   totalOrders,
   active,
@@ -73,7 +74,7 @@ export default function StatCards({
             </View>
           </View>
           <View>
-            <Text style={styles.stat_value}>${0}</Text>
+            <Text style={styles.stat_value}>${parseFloat(totalSales).toFixed(2)}</Text>
           </View>
           <View>
             <View style={{ height: 20 }} />
