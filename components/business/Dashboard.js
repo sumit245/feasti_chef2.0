@@ -169,7 +169,7 @@ export default function Dashboard({ navigation }) {
     console.log('====================================');
     console.log(id);
     console.log('====================================');
-    const response = await axios.get(`${DASHBOARD_URL}/${id}`)
+    const response = await axios.get(`${DASHBOARD_URL}${id}`)
     const {
       totalorders,
       acceptedCount,
