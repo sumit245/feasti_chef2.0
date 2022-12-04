@@ -221,6 +221,7 @@ export default function Dashboard({ navigation }) {
 
         <View style={{ height: 10 }} />
         <StatCards
+          totalOrders={totalOrders}
           active={activecount}
           complete={completecount}
           cancel={cancelledcount}
@@ -275,7 +276,7 @@ export default function Dashboard({ navigation }) {
                   textAlign: 'center',
                 }}
               >
-                {acceptanceRate.toFixed(2) || 0}%
+                {parseFloat(acceptanceRate).toFixed(2) || 0}%
               </Text>
               <Text style={{ fontWeight: 'bold', fontSize: 14 }}>
                 accept rate
@@ -289,7 +290,7 @@ export default function Dashboard({ navigation }) {
                   textAlign: 'center',
                 }}
               >
-                {rejectedRate.toFixed(2) || 0}%
+                {parseFloat(rejectedRate).toFixed(2) || 0}%
               </Text>
               <Text style={{ fontWeight: 'bold', fontSize: 14 }}>
                 reject rate

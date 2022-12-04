@@ -4,6 +4,7 @@ import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
 export default function StatCards({
+  totalOrders,
   active,
   campaignDue,
   cancel,
@@ -35,7 +36,7 @@ export default function StatCards({
   useEffect(() => {
     calculateCommissionAddOns();
   }, [commission, dashboard]);
-  
+
   return (
     <ScrollView horizontal>
       <View>
@@ -220,11 +221,7 @@ export default function StatCards({
               <Text style={styles.stat_head}>Orders</Text>
               <View>
                 <Badge style={{ backgroundColor: "#ff6600", color: "#fff", fontWeight: "bold" }}>
-                  {parseInt(complete) +
-                    parseInt(active) +
-                    parseInt(cancel) +
-                    parseInt(notstarted) +
-                    parseInt(rejected)}
+                  {totalOrders}
                 </Badge>
               </View>
             </View>
