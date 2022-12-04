@@ -4,6 +4,7 @@ import { Badge } from "react-native-paper";
 import { width } from "../../Dimens";
 
 export default function StatCards({
+  revenue,
   totalOrders,
   active,
   campaignDue,
@@ -11,7 +12,6 @@ export default function StatCards({
   complete,
   notstarted,
   rejected,
-  dashboard,
   commission,
   newUser,
   repeatedUser,
@@ -25,17 +25,17 @@ export default function StatCards({
   const [totalCommission, setTotalCommission] = useState(0);
   const [salesCommission, setSalesCommission] = useState(0);
 
-  const calculateCommissionAddOns = () => {
-    let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
-    let y = (parseFloat(dashboard.totalRevenue) * parseFloat(commission)) / 100;
-    setAddCommission(x);
-    setSalesCommission(y);
-    setTotalCommission(x + y);
-  };
+  // const calculateCommissionAddOns = () => {
+  //   let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
+  //   let y = (parseFloat(dashboard.totalRevenue) * parseFloat(commission)) / 100;
+  //   setAddCommission(x);
+  //   setSalesCommission(y);
+  //   setTotalCommission(x + y);
+  // };
 
-  useEffect(() => {
-    calculateCommissionAddOns();
-  }, [commission, dashboard]);
+  // useEffect(() => {
+  //   calculateCommissionAddOns();
+  // }, [commission, dashboard]);
 
   return (
     <ScrollView horizontal>
@@ -73,7 +73,7 @@ export default function StatCards({
             </View>
           </View>
           <View>
-            <Text style={styles.stat_value}>${dashboard.grossRevenue + 180}</Text>
+            <Text style={styles.stat_value}>${0}</Text>
           </View>
           <View>
             <View style={{ height: 20 }} />
@@ -90,96 +90,29 @@ export default function StatCards({
               <Text style={styles.stat_label}>Delivery</Text>
               <Text style={styles.stat_label}>Discount</Text>
             </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                height: 30,
-                padding: 2,
-                borderRadius: 1,
-                paddingHorizontal: 8,
-                marginVertical: 4,
-                borderWidth: 0.2,
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.stat_label}>1 Meal</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${dashboard.discountTwo}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                height: 30,
-                padding: 2,
-                borderRadius: 1,
-                paddingHorizontal: 8,
-                marginVertical: 4,
-                borderWidth: 0.2,
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.stat_label}>2 Meals</Text>
-              <Text style={styles.stat_label}>${dashboard.sumTwo}</Text>
-              <Text style={styles.stat_label}>$0</Text>
-              <Text style={styles.stat_label}>${dashboard.discountTwo}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                height: 30,
-                padding: 2,
-                borderRadius: 1,
-                paddingHorizontal: 8,
-                marginVertical: 4,
-                borderWidth: 0.2,
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.stat_label}>7 Meals</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                height: 30,
-                marginVertical: 4,
-                padding: 2,
-                paddingHorizontal: 8,
-                borderRadius: 1,
-                borderWidth: 0.2,
-                alignItems: "center",
-              }}
-            >
-              <Text style={styles.stat_label}>15 Meals</Text>
-              <Text style={styles.stat_label}>${dashboard.sumFifteen}</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${dashboard.discountFifteen}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                minHeight: 30,
-                marginVertical: 4,
-                alignItems: "center",
-                paddingHorizontal: 8,
-                padding: 2,
-                borderRadius: 1,
-                borderWidth: 0.2,
-              }}
-            >
-              <Text style={styles.stat_label}>30 Meals</Text>
-              <Text style={styles.stat_label}>${dashboard.sumThirty}</Text>
-              <Text style={styles.stat_label}>${0}</Text>
-              <Text style={styles.stat_label}>${dashboard.discountThirty}</Text>
-            </View>
+            {
+              revenue.map((item, key) => (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    height: 30,
+                    padding: 2,
+                    borderRadius: 1,
+                    paddingHorizontal: 8,
+                    marginVertical: 4,
+                    borderWidth: 0.2,
+                    alignItems: "center",
+                  }}
+                  key={key}
+                >
+                  <Text style={styles.stat_label}>{item.plan_name}</Text>
+                  <Text style={styles.stat_label}>${parseFloat(item.revenue).toFixed(2) || 0}</Text>
+                  <Text style={styles.stat_label}>${parseFloat(item.delivery_fee).toFixed(2) || 0}</Text>
+                  <Text style={styles.stat_label}>${parseFloat(item.discount).toFixed(2) || 0}</Text>
+                </View>
+              ))
+            }
           </View>
         </View>
         {/* Sales */}

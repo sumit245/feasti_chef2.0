@@ -23,6 +23,7 @@ import { BASE_URL, DASHBOARD_URL, GET_DISPATCH_ORDER, GET_USER_BY_TYPES, ORDERS 
 export default function Dashboard({ navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, city, restaurant_id } = restaurant;
+  const [revenue, setRevenue] = useState([])
   const [totalOrders, setTotalOrders] = useState(0)
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
@@ -35,8 +36,6 @@ export default function Dashboard({ navigation }) {
   const [visits, setvisits] = useState(0);
   const [acceptanceRate, setAcceptanceRate] = useState(0);
   const [rejectedRate, setRejectedRate] = useState(0);
-  const [dashboard, setDashboard] = useState({});
-  const [index, setIndex] = React.useState(0);
   const [totalAddOnRevenue, setTotalAddOnRevenue] = useState(0);
   const [totalAddOns, setTotalAddOns] = useState(0);
   const [campaignDue, setCampaignDue] = useState(0);
@@ -44,14 +43,6 @@ export default function Dashboard({ navigation }) {
 
   const [newUser, setnewUser] = useState(0);
   const [repeatedUser, setrepeatedUser] = useState(0);
-
-  const fetchStats = async (restaurant) => {
-    const res = await axios.get(`${ORDERS}dashboard/${restaurant}`);
-    const dashboard = res.data;
-    if (dashboard !== null) {
-      setDashboard(dashboard);
-    }
-  };
 
   const fetchCommission = async () => {
     const resp = await axios.get(`${BASE_URL}/api/checkout`);
@@ -74,6 +65,7 @@ export default function Dashboard({ navigation }) {
   const fetchRevenue = async (id) => {
     const response = await axios.get(`${DASHBOARD_URL}${id}`)
     const {
+      allRevenue,
       totalorders,
       acceptedCount,
       startedCount,
@@ -82,6 +74,7 @@ export default function Dashboard({ navigation }) {
       rejectedCount,
       acceptanceRate,
       rejectanceRate } = response.data
+    setRevenue(allRevenue)
     setTotalOrders(totalorders)
     setAcceptanceRate(acceptanceRate)
     setActiveCount(startedCount)
@@ -95,7 +88,6 @@ export default function Dashboard({ navigation }) {
 
 
   useEffect(() => {
-    fetchStats(restaurant_id);
     fetchCommission();
     getuserByType(restaurant_name);
     fetchRevenue(restaurant_id)
@@ -111,7 +103,6 @@ export default function Dashboard({ navigation }) {
 
   const onRefresh = () => {
     setRefreshing(true);
-    fetchStats(restaurant_id);
     fetchCommission();
     getuserByType(restaurant_name);
     fetchRevenue(restaurant_id)
@@ -221,6 +212,7 @@ export default function Dashboard({ navigation }) {
 
         <View style={{ height: 10 }} />
         <StatCards
+          revenue={revenue}
           totalOrders={totalOrders}
           active={activecount}
           complete={completecount}
@@ -230,7 +222,6 @@ export default function Dashboard({ navigation }) {
           commission={commission}
           rejected={rejected}
           newUser={newUser}
-          dashboard={dashboard}
           repeatedUser={repeatedUser}
           cartconversion={cartconversion}
           visits={visits}
