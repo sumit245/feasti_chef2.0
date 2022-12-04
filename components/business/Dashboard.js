@@ -166,6 +166,9 @@ export default function Dashboard({ navigation }) {
   };
 
   const fetchRevenue = async (id) => {
+    console.log('====================================');
+    console.log(id);
+    console.log('====================================');
     const response = await axios.get(`${DASHBOARD_URL}/${id}`)
     const {
       totalorders,
@@ -185,7 +188,7 @@ export default function Dashboard({ navigation }) {
   useEffect(() => {
     getAddOnCounts(restaurant_id);
     fetchRevenue(restaurant_id)
-  },[restaurant_id]);
+  }, [restaurant_id]);
 
   useEffect(() => {
     fetchCommission();
