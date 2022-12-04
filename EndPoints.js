@@ -19,5 +19,6 @@ export const BANNER_URL = BASE_URL + '/api/banner/'
 export const DASHBOARD_URL = BASE_URL + '/api/newrest/chefdashboard/'
 export const GET_COUPON_CHEF = BASE_URL + '/api/coupon/getcouponforchef/'
 export const MAIL_URL = BASE_URL + '/api/contacts/'
+export const CURRENT_PAYOUT = BASE_URL +'/api/admintochefpayments/getchefpayout/'
 export const PAYOUTS = BASE_URL + "/api/admintochefpayments/getpastpayout/"
 export const GET_REVIEW_BYID = BASE_URL + '/api/review/'

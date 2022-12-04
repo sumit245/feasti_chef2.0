@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { CURRENT_PAYOUT } from '../../EndPoints';
 
 const PayoutHome = ({ route, navigation }) => {
   const { commission } = route.params;
@@ -43,9 +44,7 @@ const PayoutHome = ({ route, navigation }) => {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_id } = restaurant;
   const chefPayouts = async (id) => {
-    const response = await axios.get(
-      'http://192.168.1.4:5000/api/admintochefpayments/getchefpayout/' + id
-    );
+    const response = await axios.get(`${CURRENT_PAYOUT}${id}`);
     const {
       totalBaseIncome,
       totalDiscount,

@@ -92,9 +92,9 @@ export default function CommissionHistory({ route, navigation }) {
     setSearchQuery(query);
     if (query !== "") {
       let item = DATA.filter((item) => item.order_id === query);
-      setOrders(item);
+      setData(item);
     } else {
-      setOrders(DATA);
+      setData(DATA);
     }
   };
 
