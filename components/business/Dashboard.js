@@ -170,23 +170,26 @@ export default function Dashboard({ navigation }) {
     console.log(id);
     console.log('====================================');
     const response = await axios.get(`${DASHBOARD_URL}${id}`)
-    const {
-      totalorders,
-      acceptedCount,
-      pendingCount,
-      startedCount,
-      completedCount,
-      cancelledCount,
-      rejectedCount,
-      acceptanceRate,
-      rejectanceRate } = response.data
     console.log('====================================');
-    console.log(totalorders, acceptedCount, acceptanceRate);
+    console.log(response.data);
     console.log('====================================');
+    // const {
+    //   totalorders,
+    //   acceptedCount,
+    //   pendingCount,
+    //   startedCount,
+    //   completedCount,
+    //   cancelledCount,
+    //   rejectedCount,
+    //   acceptanceRate,
+    //   rejectanceRate } = response.data
+    // console.log('====================================');
+    // console.log(totalorders, acceptedCount, acceptanceRate);
+    // console.log('====================================');
   }
 
   useEffect(() => {
-    getAddOnCounts(restaurant_id);
+    // getAddOnCounts(restaurant_id);
     fetchRevenue(restaurant_id)
   }, [restaurant_id]);
 
