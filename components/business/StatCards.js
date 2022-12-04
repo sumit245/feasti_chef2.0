@@ -23,6 +23,7 @@ export default function StatCards({
   const [addOnCommission, setAddCommission] = useState(0);
   const [totalCommission, setTotalCommission] = useState(0);
   const [salesCommission, setSalesCommission] = useState(0);
+
   const calculateCommissionAddOns = () => {
     let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
     let y = (parseFloat(dashboard.totalRevenue) * parseFloat(commission)) / 100;
@@ -30,6 +31,7 @@ export default function StatCards({
     setSalesCommission(y);
     setTotalCommission(x + y);
   };
+
   useEffect(() => {
     calculateCommissionAddOns();
   }, [commission, dashboard]);
@@ -120,7 +122,7 @@ export default function StatCards({
             >
               <Text style={styles.stat_label}>2 Meals</Text>
               <Text style={styles.stat_label}>${dashboard.sumTwo}</Text>
-              <Text style={styles.stat_label}>${80}</Text>
+              <Text style={styles.stat_label}>$0</Text>
               <Text style={styles.stat_label}>${dashboard.discountTwo}</Text>
             </View>
             <View
@@ -174,7 +176,7 @@ export default function StatCards({
             >
               <Text style={styles.stat_label}>30 Meals</Text>
               <Text style={styles.stat_label}>${dashboard.sumThirty}</Text>
-              <Text style={styles.stat_label}>${100}</Text>
+              <Text style={styles.stat_label}>${0}</Text>
               <Text style={styles.stat_label}>${dashboard.discountThirty}</Text>
             </View>
           </View>
