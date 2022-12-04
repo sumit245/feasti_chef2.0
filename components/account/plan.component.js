@@ -10,20 +10,17 @@ import {
 import Collapsible from "react-native-collapsible";
 import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { styles } from "./account.styles";
 import ToggleLunchDinner from "../header/ToggleLunchDinner";
 import { updatePlansPrice } from "../../actions/actions";
 
 export default function Plans() {
   const profile = useSelector((state) => state.restaurant);
-
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [editable, setEditable] = useState(false);
   const [slot, setSlot] = useState("Lunch")
   const [loaded, setLoaded] = useState(false)
-
-
   const [plans, setPlans] = useState([])
 
   const editHandler = () => {

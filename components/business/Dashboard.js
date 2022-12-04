@@ -15,11 +15,10 @@ import { useSelector } from 'react-redux';
 import { WHITE } from '../../Colors';
 import { styles } from '../campaign/campaign.styles';
 import Ants from 'react-native-vector-icons/FontAwesome5';
-import { TabView, TabBar } from 'react-native-tab-view';
 import StatCards from './StatCards';
 import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BASE_URL, GET_DISPATCH_ORDER, GET_USER_BY_TYPES, ORDERS } from '../../EndPoints';
+import { BASE_URL, DASHBOARD_URL, GET_DISPATCH_ORDER, GET_USER_BY_TYPES, ORDERS } from '../../EndPoints';
 
 export default function Dashboard({ navigation }) {
   const layout = useWindowDimensions();
@@ -166,9 +165,27 @@ export default function Dashboard({ navigation }) {
     }
   };
 
+  const fetchRevenue = async (id) => {
+    const response = await axios.get(`${DASHBOARD_URL}/${id}`)
+    const {
+      totalorders,
+      acceptedCount,
+      pendingCount,
+      startedCount,
+      completedCount,
+      cancelledCount,
+      rejectedCount,
+      acceptanceRate,
+      rejectanceRate } = response.data
+    console.log('====================================');
+    console.log(totalorders, acceptedCount, acceptanceRate);
+    console.log('====================================');
+  }
+
   useEffect(() => {
     getAddOnCounts(restaurant_id);
-  });
+    fetchRevenue(restaurant_id)
+  },[restaurant_id]);
 
   useEffect(() => {
     fetchCommission();
