@@ -171,6 +171,7 @@ export default function Review({ item, index, navigation }) {
                     marginHorizontal: 2,
                     marginVertical: 2,
                   }}
+                  key={index}
                 >
                   <Text
                     key={index}
