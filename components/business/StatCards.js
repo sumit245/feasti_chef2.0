@@ -26,19 +26,16 @@ export default function StatCards({
   const [totalCommission, setTotalCommission] = useState(0);
   const [salesCommission, setSalesCommission] = useState(0);
 
-  // const calculateCommissionAddOns = () => {
-  //   let x = (parseFloat(addOnRevenue) * parseFloat(commission)) / 100;
-  //   let y = (parseFloat(dashboard.totalRevenue) * parseFloat(commission)) / 100;
-  //   setAddCommission(x);
-  //   setSalesCommission(y);
-  //   setTotalCommission(x + y);
-  // };
+  const calculateCommission = () => {
+    let x = 0;
+    let y = (parseFloat(totalSales) * parseFloat(commission)) / 100;
+    setAddCommission(x);
+    setSalesCommission(y);
+    setTotalCommission(x + y);
+  };
 
   useEffect(() => {
-    console.log('====================================');
-    console.log(commission);
-    console.log('====================================');
-    // calculateCommissionAddOns();
+    calculateCommission()
   }, [commission]);
 
   return (
