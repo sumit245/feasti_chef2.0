@@ -34,9 +34,12 @@ export default function StatCards({
   //   setTotalCommission(x + y);
   // };
 
-  // useEffect(() => {
-  //   calculateCommissionAddOns();
-  // }, [commission, dashboard]);
+  useEffect(() => {
+    console.log('====================================');
+    console.log(commission);
+    console.log('====================================');
+    // calculateCommissionAddOns();
+  }, [commission]);
 
   return (
     <ScrollView horizontal>
