@@ -33,7 +33,7 @@ export default function OrderDetails({ route, navigation }) {
     let delivery_fee = Number(order.delivery_fee) ? parseFloat(order.delivery_fee).toFixed(2) : 0
     totalPrice + delivery_fee
     setTotal(totalPrice)
-  }, [order, base_price, discount, delivery_fee])
+  }, [order])
 
 
 
