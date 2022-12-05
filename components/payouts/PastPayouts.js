@@ -124,7 +124,7 @@ export default function PastPayouts({ navigation, commission }) {
     return (
       <Item
         item={item}
-        key={item.id}
+        key={item._id}
         navigation={navigation}
         commission={commission}
       />
@@ -136,7 +136,7 @@ export default function PastPayouts({ navigation, commission }) {
       data={payouts}
       renderItem={renderItem}
       extraData={navigation}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item._id}
       ListEmptyComponent={ListEmptyContent}
     />
   );

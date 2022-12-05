@@ -18,13 +18,9 @@ const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
     const res = await axios.get(`${ORDERS}${id}`);
     const { data } = res;
-    // if (data !== null) {
     navigation.navigate("orderDetails", {
       order: data,
     });
-    // } else {
-    //   alert("No Matching Order Found!!!");
-    // }
   };
   return (
     <View style={styles.card}>
@@ -103,7 +99,7 @@ export default function CommissionHistory({ route, navigation }) {
     return (
       <Item
         item={item}
-        key={item.id}
+        key={item._id}
         commission={commission}
         navigation={navigation}
       />
@@ -160,7 +156,7 @@ export default function CommissionHistory({ route, navigation }) {
         data={orders}
         contentContainerStyle={{ paddingBottom: 10 }}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         extraData={selectedId}
         ListEmptyComponent={ListEmptyContent}
       />
