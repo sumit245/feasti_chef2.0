@@ -218,9 +218,7 @@ export default function OrderDetails({ route, navigation }) {
                 ))
               ))}
         </View>
-
       </ScrollView>
-
     </SafeAreaView>
   );
 }
