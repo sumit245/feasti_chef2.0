@@ -29,11 +29,7 @@ export default function Review({ item, index, navigation }) {
   const fetchOrderById = async (id) => {
     const res = await axios.get(`${ORDER_DETAILS}${id}`);
     const { data } = res;
-    if (data !== null) {
-      navigation.navigate("orderDetails", { order: data });
-    } else {
-      alert("No Matching Order Found!!!");
-    }
+    navigation.navigate("orderDetails", { order: data });
   };
 
   const submitReply = async () => {
@@ -85,7 +81,7 @@ export default function Review({ item, index, navigation }) {
             textTransform: "uppercase",
             textAlign: "right",
           }}
-          onPress={() => fetchOrderById(item.order_id)}
+          onPress={() => fetchOrderById(item._id)}
         >
           details
         </Text>
