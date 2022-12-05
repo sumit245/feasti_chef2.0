@@ -12,12 +12,11 @@ import Header from "../header/Header";
 import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
+import { ORDER_DETAILS } from "../../EndPoints";
 
 const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
-    const res = await axios.get(
-      "http://192.168.1.4:5000/api/orders/getOrderbyID/" + id
-    );
+    const res = await axios.get(`${ORDER_DETAILS}${id}`);
     const { data } = res;
     if (data !== null) {
       navigation.navigate("orderDetails", {
@@ -54,11 +53,7 @@ const Item = ({ item, commission, navigation }) => {
         <View>
           <Text></Text>
           <Text style={styles.smallText}>
-            {item.plan === "twoPlan"
-              ? "2 Days"
-              : item.plan === "fifteenPlan"
-                ? "15 Days"
-                : "30 Days"}
+            {item.plan_name}
           </Text>
           <Text style={styles.smallText}>${item.base_price}</Text>
           <Text style={styles.smallText}>${item.promo_id !== "PROMOADMIN" ? item.discount : 0}</Text>

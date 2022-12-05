@@ -128,13 +128,6 @@ export default function CommissionTracking({ route, navigation }) {
         </View>
 
         <View style={styles.cardRow}>
-          <Text style={styles.smallText}>Total Delivery Amount ($)</Text>
-          <Text style={[styles.smallText, { marginRight: 18, color: '#000' }]}>
-            ${parseFloat(totalAddOnReveneue).toFixed(2)}
-          </Text>
-        </View>
-
-        <View style={styles.cardRow}>
           <Text style={styles.smallText}>
             Total Add-ons Commission ({commission}%)
           </Text>
@@ -145,6 +138,15 @@ export default function CommissionTracking({ route, navigation }) {
             ).toFixed(2)}
           </Text>
         </View>
+
+        <View style={styles.cardRow}>
+          <Text style={styles.smallText}>Total Delivery Amount ($)</Text>
+          <Text style={[styles.smallText, { marginRight: 18, color: '#000' }]}>
+            ${parseFloat(totalAddOnReveneue).toFixed(2)}
+          </Text>
+        </View>
+
+
 
         <View style={styles.cardRow}>
           <Text style={styles.smallText}>Total Discount ($)</Text>
