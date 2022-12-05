@@ -34,7 +34,6 @@ export default function HeaderTabSwitch({
   useEffect(() => {
     setCurrentIndex(selected);
     returnCurrentIndex(currentIndex);
-    console.log(mealCount)
   }, [selected]);
 
   return (
