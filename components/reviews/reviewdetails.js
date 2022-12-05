@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { GET_REVIEW_BYID } from "../../EndPoints";
+import { GET_REVIEW_BYID, ORDER_DETAILS } from "../../EndPoints";
 
 export default function Review({ item, index, navigation }) {
   const [isReplying, setReplying] = useState(false);
@@ -27,7 +27,7 @@ export default function Review({ item, index, navigation }) {
   }, [item]);
 
   const fetchOrderById = async (id) => {
-    const res = await axios.get("http://192.168.1.4:5000/api/orders/getOrderbyID/" + id);
+    const res = await axios.get(`${ORDER_DETAILS}${id}`);
     const { data } = res;
     if (data !== null) {
       navigation.navigate("orderDetails", { order: data });
@@ -115,7 +115,7 @@ export default function Review({ item, index, navigation }) {
             </Text>
             <Text style={{ fontSize: 14, marginVertical: 2 }}>
               Reviewed at:{" "}
-              {moment(item.review_at).format("DD MMM YYYY hh:mm:ss")}
+              {moment(item.createdAt).format("DD MMM YYYY hh:mm:ss")}
             </Text>
           </View>
         </View>

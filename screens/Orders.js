@@ -118,9 +118,6 @@ export default function Orders() {
       return res;
     };
     let filtered_array = filterByReference(currentOrder, todayOrders);
-    console.log('====================================');
-    console.log(filtered_array);
-    console.log('====================================');
     let unDeliveredOrders = filtered_array.filter(
       (item) => item.delivered === false
     );
