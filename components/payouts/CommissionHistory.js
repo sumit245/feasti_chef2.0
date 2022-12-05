@@ -66,7 +66,7 @@ const Item = ({ item, commission, navigation }) => {
         </View>
       </View>
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <TouchableOpacity onPress={() => fetchOrderById(item.order_id)}>
+        <TouchableOpacity onPress={() => fetchOrderById(item._id)}>
           <Text style={{ fontWeight: "bold", fontSize: 16, color: "#226ccf" }}>
             View
           </Text>
