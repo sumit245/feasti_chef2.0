@@ -31,13 +31,14 @@ export default function OrderDetails({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const { restaurant_name, restaurant_id } = restaurant;
 
-  function add(accumulator, a) {
-    return parseFloat(accumulator) + parseFloat(a);
-  }
+  // function add(accumulator, a) {
+  //   return parseFloat(accumulator) + parseFloat(a);
+  // }
+  // subtotals.length !== 0 ? subtotals[0].reduce(add, 0) :
 
-  const subtotals =
-    Array.isArray(order.add_on) && order.add_on.map(item => (item.map((item) => item.subtotal)));
-  let price = subtotals.length !== 0 ? subtotals[0].reduce(add, 0) : 0;
+  // const subtotals =
+  //   Array.isArray(order.add_on) && order.add_on.map(item => (item.map((item) => item.subtotal)));
+  let price = 0;
 
   return (
     <SafeAreaView style={styles.container}>
