@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { avatarify } from "../../helpers/truncate_string";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { GET_REVIEW_BYID, ORDER_DETAILS } from "../../EndPoints";
+import { GET_REVIEW_BYID, ORDERS } from "../../EndPoints";
 
 export default function Review({ item, index, navigation }) {
   const [isReplying, setReplying] = useState(false);
