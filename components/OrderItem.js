@@ -201,7 +201,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                   ',' +
                   (city || '') +
                   ' ' +
-                  statess +
+                  states +
                   ',' +
                   postal_code || 'N/A'}
               </Text>
