@@ -5,6 +5,7 @@ import { width } from "../../Dimens";
 
 export default function StatCards({
   totalSales,
+  totalRevenue,
   revenue,
   totalOrders,
   active,
@@ -28,7 +29,7 @@ export default function StatCards({
 
   const calculateCommission = () => {
     let x = 0;
-    let y = (parseFloat(totalSales) * parseFloat(commission)) / 100;
+    let y = (parseFloat(totalRevenue) * parseFloat(commission)) / 100;
     setAddCommission(x);
     setSalesCommission(y);
     setTotalCommission(x + y);
@@ -140,7 +141,7 @@ export default function StatCards({
             </Text>
             <View style={{ marginVertical: 4, paddingVertical: 4 }} />
             <Text style={styles.stat_label}>
-              Sales: ${parseFloat(salesCommission).toFixed(2)}
+              Revenue: ${parseFloat(salesCommission).toFixed(2)}
             </Text>
             <Text style={styles.stat_label}>
               Ad Ons: ${parseFloat(addOnCommission).toFixed(2)}
