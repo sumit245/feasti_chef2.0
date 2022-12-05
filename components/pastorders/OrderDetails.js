@@ -155,7 +155,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text>${
                 parseFloat(order.base_price).toFixed(2)
                 - parseFloat(order.discount).toFixed(2)
-                + parseFloat(order.delivery_fee).toFixed(2)}
+                + Number(order.delivery_fee) && parseFloat(order.delivery_fee).toFixed(2)}
               </Text>
             </View>
           </View>
