@@ -12,11 +12,11 @@ import Header from "../header/Header";
 import { Searchbar } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
-import { ORDER_DETAILS } from "../../EndPoints";
+import { ORDERS } from "../../EndPoints";
 
 const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
-    const res = await axios.get(`${ORDER_DETAILS}${id}`);
+    const res = await axios.get(`${ORDERS}${id}`);
     const { data } = res;
     console.log('====================================');
     console.log(data);
