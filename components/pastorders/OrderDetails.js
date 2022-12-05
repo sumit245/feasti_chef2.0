@@ -153,13 +153,13 @@ export default function OrderDetails({ route, navigation }) {
           <View style={styles.row}>
             <View style={styles.headerRows}>
               <Text style={styles.text}>Price</Text>
-              {order.isDelivery && <Text style={styles.text}>Dis</Text>}
+              {order.isDelivery && <Text style={styles.text}>Deliv</Text>}
               <Text style={styles.text}>Dis</Text>
               <Text style={styles.text}>Total</Text>
             </View>
             <View style={styles.headerRows}>
               <Text>{"$" + order.base_price}</Text>
-              {order.isDelivery && <Text style={styles.text}>{order.delivery_fee}</Text>}
+              {order.isDelivery && <Text style={styles.text}>${order.delivery_fee}</Text>}
               <Text>${order.promo_id !== "PROMOADMIN" ? order.discount : 0}</Text>
               <Text>${total}
               </Text>
