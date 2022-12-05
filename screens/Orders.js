@@ -108,9 +108,6 @@ export default function Orders() {
     setOrders(todayOrders);
     const currentOrderResponse = await axios.get(`${GET_CURRENT_ORDERS}`);
     const currentOrder = currentOrderResponse.data;
-    console.log('====================================');
-    console.log(currentOrder);
-    console.log('====================================');
     const filterByReference = (arr1, arr2) => {
       let res = [];
       res = arr1.filter((el) => {
@@ -121,6 +118,9 @@ export default function Orders() {
       return res;
     };
     let filtered_array = filterByReference(currentOrder, todayOrders);
+    console.log('====================================');
+    console.log(filtered_array);
+    console.log('====================================');
     let unDeliveredOrders = filtered_array.filter(
       (item) => item.delivered === false
     );
