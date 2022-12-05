@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Badge } from "react-native-paper";
-import { DARKGRAY} from "../../Colors";
+import { DARKGRAY } from "../../Colors";
 import { width } from "../../Dimens";
 
 export default function HeaderTabSwitch({
@@ -34,6 +34,7 @@ export default function HeaderTabSwitch({
   useEffect(() => {
     setCurrentIndex(selected);
     returnCurrentIndex(currentIndex);
+    console.log(mealCount)
   }, [selected]);
 
   return (
