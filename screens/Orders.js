@@ -108,6 +108,9 @@ export default function Orders() {
     setOrders(todayOrders);
     const currentOrderResponse = await axios.get(`${GET_CURRENT_ORDERS}`);
     const currentOrder = currentOrderResponse.data;
+    console.log('====================================');
+    console.log(currentOrder);
+    console.log('====================================');
     const filterByReference = (arr1, arr2) => {
       let res = [];
       res = arr1.filter((el) => {
@@ -124,7 +127,7 @@ export default function Orders() {
     setCount(unDeliveredOrders.length);
   };
 
- 
+
   const tabHandler = (tab, index) => {
     setCurrentTab(tab);
     setSelected(index);
@@ -138,7 +141,7 @@ export default function Orders() {
       });
       setMeal(currentMeal[0]);
     }
-    
+
     fetchOrders(restaurant_id);
   }, [currentTab]);
 
