@@ -59,8 +59,8 @@ export default function Reviews({ navigation }) {
     setSelectedStar(0);
     let review = tempreview.filter(
       (item) =>
-        moment(item.review_at) >= moment(start) &&
-        moment(item.review_at) <= moment(end).add(1, 'day')
+        moment(item.createdAt) >= moment(start) &&
+        moment(item.createdAt) <= moment(end).add(1, 'day')
     );
     setReviews(review);
   };
