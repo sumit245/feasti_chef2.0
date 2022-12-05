@@ -86,7 +86,7 @@ export default function Review({ item, index, navigation }) {
             textTransform: "uppercase",
             textAlign: "right",
           }}
-          onPress={() => fetchOrderById(item._id)}
+          onPress={() => fetchOrderById(item.order_id)}
         >
           details
         </Text>
