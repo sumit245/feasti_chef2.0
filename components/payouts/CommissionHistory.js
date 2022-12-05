@@ -18,13 +18,16 @@ const Item = ({ item, commission, navigation }) => {
   const fetchOrderById = async (id) => {
     const res = await axios.get(`${ORDER_DETAILS}${id}`);
     const { data } = res;
-    if (data !== null) {
-      navigation.navigate("orderDetails", {
-        order: data,
-      });
-    } else {
-      alert("No Matching Order Found!!!");
-    }
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
+    // if (data !== null) {
+    //   navigation.navigate("orderDetails", {
+    //     order: data,
+    //   });
+    // } else {
+    //   alert("No Matching Order Found!!!");
+    // }
   };
   return (
     <View style={styles.card}>
