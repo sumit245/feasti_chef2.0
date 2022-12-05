@@ -19,6 +19,7 @@ export default function OrderDetails({ route, navigation }) {
   const [city, setCity] = useState("")
   const [addressLine1, setAddressLine] = useState("")
   const [postal_code, setPostalCode] = useState("")
+  const [total, setTotal] = useState(0)
   useEffect(() => {
     const { address_type, city, addressLine1, postal_code } = order.address;
     setAddressType(address_type)
@@ -26,6 +27,14 @@ export default function OrderDetails({ route, navigation }) {
     setPostalCode(postal_code)
     setAddressLine(addressLine1)
   }, [order])
+
+  useEffect(() => {
+    let totalPrice = parseFloat(order.base_price).toFixed(2) - parseFloat(order.discount).toFixed(2)
+    let delivery_fee = Number(order.delivery_fee) ? parseFloat(order.delivery_fee).toFixed(2) : 0
+    totalPrice + delivery_fee
+    setTotal(totalPrice)
+  }, [order, base_price, discount, delivery_fee])
+
 
 
   const restaurant = useSelector((state) => state.restaurant);
@@ -152,10 +161,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text>{"$" + order.base_price}</Text>
               {order.isDelivery && <Text style={styles.text}>{order.delivery_fee}</Text>}
               <Text>${order.promo_id !== "PROMOADMIN" ? order.discount : 0}</Text>
-              <Text>${
-                parseFloat(order.base_price).toFixed(2)
-                - parseFloat(order.discount).toFixed(2)
-                + (Number(order.delivery_fee) ? parseFloat(order.delivery_fee).toFixed(2) : 0)}
+              <Text>${total}
               </Text>
             </View>
           </View>
