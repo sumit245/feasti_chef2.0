@@ -128,22 +128,6 @@ export default function OrderDetails({ route, navigation }) {
               </View>
             )
           }
-          {/* <View style={styles.row}>
-            <View style={styles.headerRows}>
-              <Text style={styles.text}>Deliver to</Text>
-              <Text style={{ textTransform: "uppercase", textAlign: "right" }}>
-                {(address_type || "") +
-                  ", " +
-                  (addressLine1 || "") +
-                  ", " +
-                  (city || "") +
-                  "\n " +
-                  (locality || "") +
-                  ", " +
-                  (postal_code || "")}
-              </Text>
-            </View>
-          </View> */}
 
           <View style={styles.row}>
             <View style={styles.headerRows}>
@@ -152,9 +136,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text style={styles.text}>End Date</Text>
             </View>
             <View style={styles.headerRows}>
-              <Text>
-                {order.plan_name}
-              </Text>
+              <Text>{order.plan_name}</Text>
               <Text>{order.start_date}</Text>
               <Text>{order.end_date}</Text>
             </View>
@@ -162,13 +144,19 @@ export default function OrderDetails({ route, navigation }) {
           <View style={styles.row}>
             <View style={styles.headerRows}>
               <Text style={styles.text}>Price</Text>
-              <Text style={styles.text}>Discount</Text>
+              {order.isDelivery && <Text style={styles.text}>Dis</Text>}
+              <Text style={styles.text}>Dis</Text>
               <Text style={styles.text}>Total</Text>
             </View>
             <View style={styles.headerRows}>
               <Text>{"$" + order.base_price}</Text>
+              {order.isDelivery && <Text style={styles.text}>{order.delivery_fee}</Text>}
               <Text>${order.promo_id !== "PROMOADMIN" ? order.discount : 0}</Text>
-              <Text>${parseFloat(order.total).toFixed(2)}</Text>
+              <Text>${
+                parseFloat(order.base_price).toFixed(2)
+                - parseFloat(order.discount).toFixed(2)
+                + parseFloat(order.delivery_fee).toFixed(2)}
+              </Text>
             </View>
           </View>
         </View>

@@ -87,7 +87,6 @@ export default function Reviews({ navigation }) {
   const filterwithComment = () => {
     setComment(!comment);
     setSelectedStar(0);
-    console.log(comment);
     let allreview = [...tempreview];
     let filteredReview = allreview.filter((item) => item.details !== '');
 
