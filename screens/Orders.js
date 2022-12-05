@@ -121,25 +121,24 @@ export default function Orders() {
     let unDeliveredOrders = filtered_array.filter(
       (item) => item.delivered === false
     );
-
     setCount(unDeliveredOrders.length);
   };
 
-  useEffect(() => {
-    fetchSlots();
-  }, [currentTab]);
-
+ 
   const tabHandler = (tab, index) => {
     setCurrentTab(tab);
     setSelected(index);
   };
   useEffect(() => {
+    fetchSlots();
+
     if (!isEmpty(meals)) {
       let currentMeal = meals.filter(function (e) {
         return e.day === days[new Date().getDay()];
       });
       setMeal(currentMeal[0]);
     }
+    
     fetchOrders(restaurant_id);
   }, [currentTab]);
 
