@@ -32,9 +32,9 @@ export default function Review({ item, index, navigation }) {
     console.log('====================================');
     console.log(data);
     console.log('====================================');
-    // navigation.navigate("orderDetails", {
-    //   order: data,
-    // });
+    navigation.navigate("orderDetails", {
+      order: data,
+    });
   };
 
   const submitReply = async () => {
