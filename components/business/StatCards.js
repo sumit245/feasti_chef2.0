@@ -37,7 +37,7 @@ export default function StatCards({
 
   useEffect(() => {
     calculateCommission()
-  }, [totalSales, commission]);
+  }, [totalRevenue, commission]);
 
   return (
     <ScrollView horizontal>

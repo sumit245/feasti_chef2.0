@@ -25,6 +25,7 @@ export default function Dashboard({ navigation }) {
   const { restaurant_name, city, restaurant_id } = restaurant;
   const [revenue, setRevenue] = useState([])
   const [totalSales, setTotalSales] = useState(0)
+  const [totalRevenue, setTotalRevenue] = useState(0)
   const [totalOrders, setTotalOrders] = useState(0)
   const [activecount, setActiveCount] = useState(0);
   const [completecount, setCompleteCount] = useState(0);
@@ -67,6 +68,7 @@ export default function Dashboard({ navigation }) {
     const response = await axios.get(`${DASHBOARD_URL}${id}`)
     const {
       totalSales,
+      totalRevenue,
       allRevenue,
       totalorders,
       acceptedCount,
@@ -77,6 +79,7 @@ export default function Dashboard({ navigation }) {
       acceptanceRate,
       rejectanceRate } = response.data
     setTotalSales(totalSales)
+    setTotalRevenue(totalRevenue)
     setRevenue(allRevenue)
     setTotalOrders(totalorders)
     setAcceptanceRate(acceptanceRate)
@@ -216,6 +219,7 @@ export default function Dashboard({ navigation }) {
         <View style={{ height: 10 }} />
         <StatCards
           totalSales={totalSales}
+          totalRevenue={totalRevenue}
           revenue={revenue}
           totalOrders={totalOrders}
           active={activecount}
