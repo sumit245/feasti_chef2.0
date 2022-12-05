@@ -27,9 +27,11 @@ export default function Review({ item, index, navigation }) {
   }, [item]);
 
   const fetchOrderById = async (id) => {
-    const res = await axios.get(`${ORDER_DETAILS}${id}`);
+    const res = await axios.get(`${ORDERS}${id}`);
     const { data } = res;
-    navigation.navigate("orderDetails", { order: data });
+    navigation.navigate("orderDetails", {
+      order: data,
+    });
   };
 
   const submitReply = async () => {
