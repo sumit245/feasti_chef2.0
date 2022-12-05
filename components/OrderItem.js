@@ -21,7 +21,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
   const [extras, setExtras] = useState([]);
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-  const { addressLine1, city, state, postal_code } = item.address;
+  const { addressLine1, city, states, postal_code } = item.address;
 
   const openInMap = async (address) => {
     let addres = address.flat_num + ',' + address.locality;
@@ -201,7 +201,7 @@ const CollapsedContent = ({ item, setcounterdecrease }) => {
                   ',' +
                   (city || '') +
                   ' ' +
-                  state +
+                  statess +
                   ',' +
                   postal_code || 'N/A'}
               </Text>
