@@ -8,25 +8,8 @@ import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { DASHBOARD_URL } from "../../EndPoints";
 
-function TrackCampaignContent({ banners, loaded, index }) {
-  const [discount, setDiscount] = useState(0);
-  const [orders, setOrder] = useState(0);
-  const [revenue, setRevenue] = useState(0);
-  const [users, setUsers] = useState(0);
+function TrackCampaignContent({ banners, loaded, totalOrders, totalBaseIncome, totalNetIncome,totalDiscount,users }) {
 
-  const fetchStat = async (id) => {
-    const res = await axios.get(`${DASHBOARD_URL}getchefbyidandrevenue/${id}`);
-    const { data } = res;
-    const { revenue, users, discount, totalOrders } = data;
-    setUsers(users);
-    setRevenue(revenue);
-    setDiscount(discount);
-    setOrder(totalOrders);
-  };
-
-  useEffect(() => {
-    fetchStat(banners.promo_id);
-  }, [banners.promo_id]);
 
   if (loaded && typeof banners !== "undefined") {
     let remaining = moment(banners.end_date).diff(
@@ -162,7 +145,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
           >
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{orders}</Text>
+              <Text style={styles.bigText}>{totalOrders}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Orders</Text>
             </View>
           </View>
@@ -181,7 +164,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
           >
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${revenue}</Text>
+              <Text style={styles.bigText}>${parseFloat(totalBaseIncome).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Base Income</Text>
             </View>
           </View>
@@ -200,7 +183,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
           >
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>${discount || 0}</Text>
+              <Text style={styles.bigText}>${parseFloat(totalDiscount).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Discount Paid</Text>
             </View>
           </View>
@@ -219,7 +202,7 @@ function TrackCampaignContent({ banners, loaded, index }) {
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>
-                ${parseFloat(revenue) - parseFloat(discount) || 0}
+                ${parseFloat(totalNetIncome).toFixed(2)}
               </Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Net Income</Text>
             </View>

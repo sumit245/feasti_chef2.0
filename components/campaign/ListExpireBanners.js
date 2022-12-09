@@ -5,32 +5,28 @@ import { styles } from './campaign.styles';
 import moment from 'moment';
 import TrackCampaignContent from './TrackCampaignContent';
 export default function ListExpireBanners({
-  index,
   banners,
+  loaded,
   restaurant,
   address,
-  loaded,
-  status,
   title,
-  orders,
-  discount,
-  revenue,
   users,
+  totalOrders,
+  totalBaseIncome,
+  totalNetIncome,
+  totalDiscount
 }) {
   const timesnow = moment().format('DD/MM/YYYY HH:MM:SS');
 
   const renderItem = ({ item }) => (
     <TrackCampaignContent
-      restaurant={restaurant}
       banners={item}
-      discount={discount}
-      revenue={revenue}
-      orders={orders}
-      users={users}
-      status={status}
-      index={index}
-      title={title}
       loaded={loaded}
+      totalOrders={totalOrders}
+      totalBaseIncome={totalBaseIncome}
+      totalNetIncome={totalNetIncome}
+      totalDiscount={totalDiscount}
+      users={users}
     />
   );
 
@@ -91,7 +87,7 @@ export default function ListExpireBanners({
         )}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => item._id}
       />
       <Text style={[styles.listing, { textAlign: 'center' }]}>
         Last Updated: {timesnow}
