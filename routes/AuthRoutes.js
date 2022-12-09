@@ -9,7 +9,6 @@ import PastOrders from '../screens/PastOrders';
 import OrderDetails from '../components/pastorders/OrderDetails';
 import AddMealsLayout from '../components/add_meals/AddMealsLayout';
 import NewOrders from '../components/orders/NewOrders';
-import GenerateCoupon from '../components/coupons/GenerateCoupon';
 import SelectCoupon from '../components/campaign/SelectCoupon';
 import CreateCoupon from '../components/campaign/CreateCoupon';
 import PreviewCoupon from '../components/campaign/PreviewCoupon';
@@ -44,7 +43,7 @@ export default function AuthRoutes({ navigation }) {
         {(props) => <PinPage {...props} />}
       </Stack.Screen>
       <Stack.Screen name="Login" component={Login} />
-      
+
       <Stack.Screen name="OTP">
         {(props) => <OtpComponent {...props} />}
       </Stack.Screen>
@@ -56,7 +55,6 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="review_order" component={Reviews} />
       <Stack.Screen name="add_meals" component={AddMealsLayout} />
       <Stack.Screen name="add_meals_form" component={AddEditMeals} />
-      <Stack.Screen name="coupons" component={GenerateCoupon} />
       <Stack.Screen name="selectpromo" component={SelectCoupon} />
       <Stack.Screen name="create_coupon" component={CreateCoupon} />
       <Stack.Screen name="preview_coupon" component={PreviewCoupon} />
@@ -73,7 +71,7 @@ export default function AuthRoutes({ navigation }) {
       <Stack.Screen name="commission_tracking" component={CommissionTracking} />
       <Stack.Screen name="commission_history" component={CommissionHistory} />
       <Stack.Screen name="documents" component={VerificationDocs} />
-      <Stack.Screen name="delete" component={DeleteAccount}/>
+      <Stack.Screen name="delete" component={DeleteAccount} />
     </Stack.Navigator>
   );
 }
