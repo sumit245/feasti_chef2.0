@@ -94,7 +94,7 @@ function TrackPerfContent({
       </View>
       {/* bannercard top area */}
 
-      <View style={{ flexDirection: 'row', marginVertical: 16 }}>
+      <View style={{ flexDirection: 'row', marginVertical: 16, alignItems: 'center' }}>
         {active ? (
           <Button
             mode="text"
@@ -117,6 +117,7 @@ function TrackPerfContent({
             <Button
               mode="text"
               color="#f00"
+              style={{ fontSize: 14 }}
               onPress={() => setPulled(false)}
             >
               Close
