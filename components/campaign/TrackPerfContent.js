@@ -94,42 +94,39 @@ function TrackPerfContent({
       </View>
       {/* bannercard top area */}
 
-      {!active && (
-        <View style={{ alignItems: "flex-start", marginVertical: 16 }}>
+      <View style={{ flexDirection: 'row', marginVertical: 16 }}>
+        {active ? (
           <Button
             mode="text"
-            style={{ backgroundColor: "#fff" }}
-            color="#22ccff"
+            color="#f00"
+            onPress={() => updateCoupon()}
+          >
+            CANCEL
+          </Button>
+        ) : (
+          <Button
+            mode="text"
+            color="#22cc8f"
             onPress={() => pullToView(coupon._id)}
           >
             View
           </Button>
-        </View>
-      )}
+        )}
+        {
+          pulled && (
+            <Button
+              mode="text"
+              color="#f00"
+              onPress={() => setPulled(false)}
+            >
+              Close
+            </Button>
+          )
+        }
+      </View>
 
       {active || pulled ? (
         <View>
-          <View style={{ alignItems: "flex-start", marginTop: 16 }}>
-            {!pulled ? (
-              <Button
-                mode="text"
-                style={{ backgroundColor: "#fff" }}
-                color="#f00"
-                onPress={() => updateCoupon()}
-              >
-                CANCEL
-              </Button>
-            ) : (
-              <Button
-                mode="text"
-                style={{ backgroundColor: "#fff" }}
-                color="#f00"
-                onPress={() => setPulled(false)}
-              >
-                Close
-              </Button>
-            )}
-          </View>
 
           <View style={styles.bannerRow}>
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
