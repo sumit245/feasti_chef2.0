@@ -8,7 +8,7 @@ import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { DASHBOARD_URL } from "../../EndPoints";
 
-function TrackCampaignContent({ banners, loaded, totalOrders, totalBaseIncome, totalNetIncome,totalDiscount,users }) {
+function TrackCampaignContent({ banners, loaded, totalOrders, totalBaseIncome, totalNetIncome, totalDiscount, users }) {
 
 
   if (loaded && typeof banners !== "undefined") {
@@ -127,7 +127,7 @@ function TrackCampaignContent({ banners, loaded, totalOrders, totalBaseIncome, t
             <Text
               style={{ fontWeight: "bold", fontSize: 16, color: "#22ccff" }}
             >
-              Due: ${banners.due}
+              Due: ${parseFloat(banners.due).toFixed(2)}
             </Text>
           </View>
 
