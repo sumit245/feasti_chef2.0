@@ -25,8 +25,7 @@ export default function TrackPerformance({ route, navigation }) {
   const fetchMyCoupon = async (restaurant, pos) => {
     if (pos == 0) {
       const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Active`);
-      const { data } = response;
-      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = data;
+      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = response.data;
       setPromotedOrders(total_order);
       setCoupon(coupons);
       setTotalBaseIncome(total_base_income)
@@ -36,8 +35,7 @@ export default function TrackPerformance({ route, navigation }) {
       setloaded(true);
     } else {
       const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Inactive`);
-      const { data } = response;
-      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = data;
+      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = response.data;
       setPromotedOrders(total_order);
       setCoupon(coupons);
       setTotalBaseIncome(total_base_income)
@@ -105,12 +103,13 @@ export default function TrackPerformance({ route, navigation }) {
           <ListExpired
             restaurant={restaurant_name}
             address={address}
-            active={true}
+            active={false}
             coupons={coupon}
             total_base_income={totalBaseIncome}
             total_net_income={totalNetIncome}
             discount={discount}
             unique_users={unique}
+            total_order={totalOrders}
           />
         );
 
