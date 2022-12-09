@@ -73,7 +73,7 @@ export default function ListExpired({
         )}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        keyExtractor={(item, index) => item.index}
+        keyExtractor={(item, index) => item._id}
       />
       <Text style={[styles.listing, { textAlign: "center", }]}>
         Last Updated: {timesnow}
