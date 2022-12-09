@@ -14,34 +14,36 @@ export default function TrackPerformance({ route, navigation }) {
   const [coupon, setCoupon] = useState({});
   const [pos, setPos] = useState(0);
   const [totalOrders, setPromotedOrders] = useState(0);
-  const [revenue, setRevenue] = useState(0);
+  const [totalBaseIncome, setTotalBaseIncome] = useState(0)
+  const [totalNetIncome, setTotalNetIncome] = useState(0)
   const [discount, setDiscount] = useState(0);
   const [loaded, setloaded] = useState(false);
   const [unique, setUnique] = useState(0);
   const { restaurant_name, city, locality, state, restaurant_id } = restaurant;
-  const { notcoupon, title } = route.params;
   let address = locality + ', ' + city + ', ' + state;
 
   const fetchMyCoupon = async (restaurant, pos) => {
     if (pos == 0) {
       const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Active`);
       const { data } = response;
-      const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setPromotedOrders(promotedOrders.length);
+      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = data;
+      setPromotedOrders(total_order);
       setCoupon(coupons);
-      setRevenue(revenue);
+      setTotalBaseIncome(total_base_income)
+      setTotalNetIncome(total_net_income)
       setDiscount(discount);
-      setUnique(unique);
+      setUnique(unique_users);
       setloaded(true);
     } else {
       const response = await axios.get(`${GET_COUPON_CHEF}${restaurant}/Inactive`);
       const { data } = response;
-      const { coupons, promotedOrders, revenue, discount, unique } = data;
-      setPromotedOrders(promotedOrders.length);
+      const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = data;
+      setPromotedOrders(total_order);
       setCoupon(coupons);
-      setRevenue(revenue);
+      setTotalBaseIncome(total_base_income)
+      setTotalNetIncome(total_net_income)
       setDiscount(discount);
-      setUnique(unique);
+      setUnique(unique_users);
       setloaded(true);
     }
   };
@@ -89,14 +91,12 @@ export default function TrackPerformance({ route, navigation }) {
             restaurant={restaurant_name}
             address={address}
             active={true}
-            loaded={loaded}
-            banners={coupon}
-            promotedOrders={totalOrders}
-            status={route.title}
-            title={title}
-            revenue={revenue}
+            coupons={coupon}
+            total_base_income={totalBaseIncome}
+            total_net_income={totalNetIncome}
             discount={discount}
-            unique={unique}
+            unique_users={unique}
+            total_order={totalOrders}
           />
         );
 
@@ -106,14 +106,11 @@ export default function TrackPerformance({ route, navigation }) {
             restaurant={restaurant_name}
             address={address}
             active={true}
-            loaded={loaded}
-            banners={coupon}
-            promotedOrders={totalOrders}
-            status={route.title}
-            title={title}
-            revenue={revenue}
+            coupons={coupon}
+            total_base_income={totalBaseIncome}
+            total_net_income={totalNetIncome}
             discount={discount}
-            unique={unique}
+            unique_users={unique}
           />
         );
 

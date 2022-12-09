@@ -6,83 +6,39 @@ import { DARKGRAY } from "../../Colors";
 import { Button } from "react-native-paper";
 import { styles } from "./campaign.styles";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import { COUPON_URL, } from "../../EndPoints";
 
 function TrackPerfContent({
-  banners,
-  promotedOrders,
+  coupon,
+  total_order,
+  total_base_income,
+  total_net_income,
   discount,
-  revenue,
-  unique,
+  unique_users,
   active,
 }) {
-  const [banner, setBanner] = useState({
-    promo_code: "",
-    promo_id: "",
-    plan_name: "",
-    discount_type: "",
-    discount: "",
-    duration: "",
-    start_date: "",
-    end_date: "",
-    category: "",
-    status: "",
-  });
 
-  const restaurant = useSelector((state) => state.restaurant);
-  const { _id, restaurant_name, promo, restaurant_id } = restaurant;
-
-  const [loaded, setLoaded] = useState(false);
   const [cancel, setCancel] = useState(false);
   const [pulled, setPulled] = useState(false);
-  let remaining = moment(banner.end_date).diff(moment(), "Days");
-
+  let remaining = moment(coupon.end_date).diff(moment(), "Days");
   const updateCoupon = () => {
     Alert.alert("Are you sure?", "Your active coupon will be set to inactive. Inactive coupons are not visible by users", [
       {
         text: "Cancel", onPress: () => console.log("Cancelld")
       },
-      { text: "Ok", onPress: () => setInactive(banner._id) }
+      { text: "Ok", onPress: () => setInactive(coupon._id) }
     ])
   };
 
   const setInactive = async (id) => {
-    let myCoupon = {
-      promo_id: banners.promo_id,
-      category: banners.category,
-      plan_name: banners.plan_name,
-      discount_type: banners.discount_type,
-      absolute_value: banners.absolute_value,
-      start_date: banners.start_date,
-      end_date: banners.end_date,
-      promo_code: banners.promo_code,
-      price: banners.price,
-      discount: banners.discount,
-      duration: banners.duration,
-      status: "Inactive",
-      totalOrders: promotedOrders,
-      totalBaseIncome: revenue,
-      totalDiscountPaid: discount,
-      totalUsed: unique.length,
-    };
-
     const couponresponse = await axios.put(`${COUPON_URL}${id}`, { status: "Inactive" });
-
+    const { status } = couponresponse.data
     if (status === 200) {
       setCancel(false);
     }
   };
 
-  useEffect(() => {
-    let mount = true;
-    setBanner(banners);
-    setLoaded(true);
-    return () => {
-      mount = false;
-    };
-  }, [banners]);
 
   const pullToView = (id) => {
     setPulled(true);
@@ -153,7 +109,6 @@ function TrackPerfContent({
 
       {active || pulled ? (
         <View>
-
           <View style={{ alignItems: "flex-start", marginTop: 16 }}>
             {!pulled ? (
               <Button
@@ -179,7 +134,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="cart-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}>{promotedOrders}</Text>
+              <Text style={styles.bigText}>{total_order}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Orders</Text>
             </View>
           </View>
@@ -187,7 +142,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${parseFloat(revenue || 0) - parseFloat(discount || 0)}</Text>
+              <Text style={styles.bigText}> ${parseFloat(total_net_income).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Net Income</Text>
             </View>
           </View>
@@ -196,7 +151,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="cash-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${parseFloat(revenue || 0).toFixed(2)}</Text>
+              <Text style={styles.bigText}> ${parseFloat(total_base_income).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Base Income</Text>
             </View>
           </View>
@@ -204,7 +159,7 @@ function TrackPerfContent({
           <View style={styles.bannerRow}>
             <Icon name="analytics-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
-              <Text style={styles.bigText}> ${parseFloat(discount||0).toFixed(2)}</Text>
+              <Text style={styles.bigText}> ${parseFloat(discount).toFixed(2)}</Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Discount Paid</Text>
             </View>
           </View>
@@ -213,7 +168,7 @@ function TrackPerfContent({
             <Icon name="person-outline" size={24} color={DARKGRAY} />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.bigText}>
-                {Array.isArray(unique) ? unique.length : unique}
+                {unique_users}
               </Text>
               <Text style={[styles.smallText, { color: DARKGRAY }]}> Total Users</Text>
             </View>
