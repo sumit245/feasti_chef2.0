@@ -12,6 +12,9 @@ import { PROMO_URL } from '../../EndPoints';
 export default function TrackCampaign({ route, navigation }) {
   const restaurant = useSelector((state) => state.restaurant);
   const [banner, setBanner] = useState([]);
+  const [totalOrders, setTotalOrders] = useState(0)
+  const [totalBaseIncome, setTotalBaseIncome] = useState(0)
+  const [totalNetIncome, setTotalNetIncome] = useState(0)
   const [loaded, setLoaded] = useState(false);
   const [discount, setDiscount] = useState(0);
   const [orders, setOrder] = useState(0);
@@ -25,8 +28,13 @@ export default function TrackCampaign({ route, navigation }) {
 
   const fetchMyBanner = async (restaurant_id, status) => {
     const response = await axios.get(`${PROMO_URL}${restaurant_id}/${status}`);
-    const { data } = response;
-    setBanner(data);
+    const { coupons, total_order, total_net_income, total_base_income, discount, unique_users } = response.data;
+    setBanner(coupons);
+    setTotalOrders(total_order)
+    setTotalBaseIncome(total_base_income)
+    setTotalNetIncome(total_net_income)
+    setDiscount(discount)
+    setUsers(unique_users)
     setLoaded(true);
   };
 
@@ -72,16 +80,17 @@ export default function TrackCampaign({ route, navigation }) {
       case 'first':
         return (
           <ListExpireBanners
-            index={index}
+            banners={banner}
             loaded={loaded}
             restaurant={restaurant_name}
             address={address}
-            banners={banner}
             title={title}
-            orders={orders}
-            revenue={revenue}
-            discount={discount}
             users={users}
+            index={index}
+            totalOrders={totalOrders}
+            totalBaseIncome={totalBaseIncome}
+            totalDiscount={discount}
+            totalNetIncome={totalNetIncome}
           />
         );
 
