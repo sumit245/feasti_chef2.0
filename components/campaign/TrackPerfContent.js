@@ -52,20 +52,20 @@ function TrackPerfContent({
           <View style={styles.trackHead}>
             <View>
               <Text style={[styles.bannerHeadTexts, { fontSize: 16 }]}>
-                {banner.promo_code} (
-                {banner.discount_type === "$"
-                  ? "$" + banner.discount
-                  : banner.discount + "%"}{" "}
+                {coupon.promo_code} (
+                {coupon.discount_type === "$"
+                  ? "$" + coupon.discount
+                  : coupon.discount + "%"}{" "}
                 OFF)
               </Text>
               <Text style={styles.bannerHeadTexts}>
-                {banner.plan_name}({banner.category})
+                {coupon.plan_name}({coupon.category})
               </Text>
               <Text style={styles.bannerHeadTexts}>
                 Duration:
-                {banner.start_date + "-" + banner.end_date}
+                {coupon.start_date + "-" + coupon.end_date}
               </Text>
-              <Text style={styles.bannerHeadTexts}>ID:{banner.promo_id}</Text>
+              <Text style={styles.bannerHeadTexts}>ID:{coupon.promo_id}</Text>
             </View>
 
             <View style={[styles.progressCounter, { zIndex: 1000 }]}>
@@ -75,7 +75,7 @@ function TrackPerfContent({
                   { marginTop: 32, marginBottom: 4 },
                 ]}
               >
-                {banner.duration}
+                {coupon.duration}
               </Text>
 
             </View>
@@ -100,7 +100,7 @@ function TrackPerfContent({
             mode="text"
             style={{ backgroundColor: "#fff" }}
             color="#22ccff"
-            onPress={() => pullToView(banner._id)}
+            onPress={() => pullToView(coupon._id)}
           >
             View
           </Button>
