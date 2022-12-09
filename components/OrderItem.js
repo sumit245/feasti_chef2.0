@@ -10,7 +10,7 @@ import { Switch } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { PrimaryColor, SecondaryDarkColor } from '../Colors';
 import axios from 'axios';
-import { avatarify } from '../helpers/truncate_string';
+import { avatarify } from '../helpers/commons';
 import Loader from '../helpers/Loader';
 import { GET_CURRENT_ORDER_DETAIL, SET_ORDER_STATUS } from '../EndPoints';
 

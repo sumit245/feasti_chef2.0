@@ -43,3 +43,13 @@ export const onDateChange = (date, diff) => {
   let end = b.format("DD MMM, YYYY");
   return { start, end };
 };
+export const avatarify = (str) => {
+  return str.match(/\b(\w)/g).join('')
+}
+
+export const truncate_string = (type, str1, length) => {
+  if (str1.constructor === String && length > 0) {
+    let newStr = str1.slice(0, length);
+    return type.concat(newStr);
+  }
+};
