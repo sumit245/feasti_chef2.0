@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { avatarify } from "../../helpers/truncate_string";
+import { avatarify } from "../../helpers/commons";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { GET_REVIEW_BYID, ORDER_DETAILS } from "../../EndPoints";
