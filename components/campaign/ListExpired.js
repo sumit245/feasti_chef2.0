@@ -5,35 +5,31 @@ import Shop from "react-native-vector-icons/Entypo";
 import { styles } from "./campaign.styles";
 import moment from "moment";
 export default function ListExpired({
-  banners,
   restaurant,
   address,
   active,
-  loaded,
-  promotedOrders,
-  status,
-  title,
-  revenue,
+  coupons,
+  total_order,
+  total_base_income,
+  total_net_income,
   discount,
-  unique,
+  unique_users,
 }) {
   const timesnow = moment().format("DD/MM/YYYY HH:MM:SS");
   const renderItem = ({ item }) => (
     <TrackPerfContent
       active={active}
-      loaded={loaded}
-      banners={item}
-      promotedOrders={promotedOrders}
-      status={status}
-      title={title}
-      revenue={revenue}
+      coupon={item}
+      total_order={total_order}
+      total_base_income={total_base_income}
+      total_net_income={total_net_income}
       discount={discount}
-      unique={unique}
+      unique_users={unique_users}
     />
   );
   const ListHeaderComponent = ({ restaurant, address }) => {
     return (
-      <View style={[styles.trackOutlet,{marginVertical:0}]}>
+      <View style={[styles.trackOutlet, { marginVertical: 0 }]}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Shop name="shop" size={24} color="#ff6600" />
           <View>
@@ -59,9 +55,9 @@ export default function ListExpired({
     );
   };
   return (
-    <View style={[styles.container, { backgroundColor: "#fff",marginVertical:0 }]}>
+    <View style={[styles.container, { backgroundColor: "#fff", marginVertical: 0 }]}>
       <FlatList
-        data={banners}
+        data={coupons}
         ListHeaderComponent={() => (
           <ListHeaderComponent restaurant={restaurant} address={address} />
         )}
