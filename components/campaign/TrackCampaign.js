@@ -97,16 +97,17 @@ export default function TrackCampaign({ route, navigation }) {
       case 'second':
         return (
           <ListExpireBanners
-            index={index}
+            banners={banner}
             loaded={loaded}
             restaurant={restaurant_name}
             address={address}
-            banners={banner}
             title={title}
-            discount={discount}
-            orders={orders}
-            revenue={revenue}
             users={users}
+            index={index}
+            totalOrders={totalOrders}
+            totalBaseIncome={totalBaseIncome}
+            totalDiscount={discount}
+            totalNetIncome={totalNetIncome}
           />
         );
 
