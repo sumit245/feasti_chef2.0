@@ -26,9 +26,9 @@ const Item = ({ item }) => {
   const { address_type, addressLine1, city, addressLine2, postal_code } = address;
   const accept = async (id) => {
     setLoader(true);
-    const res = await axios.put(ORDERS + id, { status: 'accepted' });
+    // const res = await axios.put(ORDERS + id, { status: 'accepted' });
     console.log('====================================');
-    console.log(res.data);
+    console.log(id);
     console.log('====================================');
     setLoader(false);
   };
