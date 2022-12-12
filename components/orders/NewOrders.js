@@ -27,11 +27,15 @@ const Item = ({ item }) => {
   const accept = async (id) => {
     setLoader(true);
     const res = await axios.put(ORDERS + id, { status: 'accepted' });
+    console.log('====================================');
+    console.log(res.data);
+    console.log('====================================');
     setLoader(false);
   };
   const reject = async (id) => {
     setLoader(true);
     const res = await axios.put(ORDERS + id, { status: 'rejected' });
+    console.log(res.data);
     setLoader(false);
   };
   const autoRejection = () => {
