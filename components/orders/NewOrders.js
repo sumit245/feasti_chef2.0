@@ -26,7 +26,7 @@ const Item = ({ item }) => {
   const { address_type, addressLine1, city, addressLine2, postal_code } = address;
   const accept = async (id) => {
     setLoader(true);
-    const res = await axios.put(`${ORDERS}chagestatus/${id}`, { status: 'accepted' });
+    const res = await axios.put(`${ORDERS}changestatus/${id}`, { status: 'accepted' });
     console.log('====================================');
     console.log(id);
     console.log('====================================');
@@ -34,7 +34,7 @@ const Item = ({ item }) => {
   };
   const reject = async (id) => {
     setLoader(true);
-    const res = await axios.put(`${ORDERS}chagestatus/${id}`, { status: 'rejected' });
+    const res = await axios.put(`${ORDERS}changestatus/${id}`, { status: 'rejected' });
     console.log(res.data);
     setLoader(false);
   };
