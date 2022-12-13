@@ -5,6 +5,13 @@ import moment from "moment";
 
 const Item = ({ item, index, navigation }) => {
   const { start_date, end_date } = item;
+  const [total, setTotal] = useState(0)
+  useEffect(() => {
+    let totalPrice = parseFloat(item.base_price).toFixed(2) - parseFloat(item.discount).toFixed(2)
+    let delivery_fee = Number.isNaN(item.delivery_fee) ? 0 : parseFloat(item.delivery_fee).toFixed(2)
+    totalPrice = parseFloat(totalPrice) + parseFloat(delivery_fee)
+    setTotal(totalPrice)
+  }, [total])
   useEffect(() => {
     let componentMounted = true;
     let x = "";
@@ -24,7 +31,6 @@ const Item = ({ item, index, navigation }) => {
 
   return (
     <View style={styles.card} key={index}>
-
       <View style={styles.title}>
         <Text style={styles.titleText}>#{item.order_id}</Text>
         <Text
@@ -103,7 +109,7 @@ const Item = ({ item, index, navigation }) => {
 
           <Text style={styles.cardText}>
             Total:
-            <Text style={styles.field}>${parseFloat(item.total).toFixed(2)}</Text>
+            <Text style={styles.field}>${parseFloat(total).toFixed(2)}</Text>
           </Text>
         </View>
         <View
