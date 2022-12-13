@@ -31,8 +31,7 @@ export default function OrderDetails({ route, navigation }) {
   useEffect(() => {
     let totalPrice = parseFloat(order.base_price).toFixed(2) - parseFloat(order.discount).toFixed(2)
     let delivery_fee = Number.isNaN(order.delivery_fee) ? 0 : parseFloat(order.delivery_fee).toFixed(2)
-    console.log("Delivery Fee is ", delivery_fee);
-    totalPrice = totalPrice + delivery_fee
+    totalPrice = parseFloat(totalPrice) + parseFloat(delivery_fee)
     setTotal(totalPrice)
   }, [total])
 
@@ -162,7 +161,7 @@ export default function OrderDetails({ route, navigation }) {
               <Text>{"$" + order.base_price}</Text>
               {order.isDelivery && <Text style={styles.text}>${order.delivery_fee}</Text>}
               <Text>${order.promo_id !== "PROMOADMIN" ? order.discount : 0}</Text>
-              <Text>${total}
+              <Text>${parseFloat(total).toFixed(2)}
               </Text>
             </View>
           </View>
