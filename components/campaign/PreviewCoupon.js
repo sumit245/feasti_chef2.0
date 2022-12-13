@@ -31,7 +31,7 @@ export default function PreviewCoupon({ navigation, route }) {
 
   const submit = async () => {
     console.log(promo);
-    if (promo.length !== 0) {
+    if (Array.isArray(promo) && promo.length !== 0) {
       alert(
         "You already have an active coupon. Either wait for expiry or cancel it manually!!!"
       );
@@ -74,7 +74,7 @@ export default function PreviewCoupon({ navigation, route }) {
       { cancelable: true, onDismiss: () => navigation.navigate("Growth") })
   }
 
-  
+
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
