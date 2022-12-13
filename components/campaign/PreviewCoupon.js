@@ -36,7 +36,7 @@ export default function PreviewCoupon({ navigation, route }) {
       );
     } else {
       setLoading(false);
-      const { _id, restaurant_id, } = await restaurant;
+      const { _id, restaurant_id } = await restaurant;
       let discountType = type === "net" ? "$" : "%";
       let diff = moment(end_date).diff(moment(start_date), "days");
       diff = diff + 1;

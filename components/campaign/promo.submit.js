@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { styles } from "./campaign.styles";
 
-export default function PromoSubmit({ route, navigation,promo_name }) {
-  const { promo } = route.params;
+export default function PromoSubmit({ route, navigation }) {
+  const { promo,promo_name } = route.params;
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
       <View style={{ alignItems: "center",marginTop:"20%" }}>
