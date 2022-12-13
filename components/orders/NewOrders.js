@@ -27,9 +27,6 @@ const Item = ({ item }) => {
   const accept = async (id) => {
     setLoader(true);
     const res = await axios.put(`${ORDERS}changestatus/${id}`, { status: 'accepted' });
-    console.log('====================================');
-    console.log(id);
-    console.log('====================================');
     setLoader(false);
   };
   const reject = async (id) => {
