@@ -33,8 +33,8 @@ export default function PreviewBanner({ route, navigation }) {
 
   const submit = async () => {
     const getMyBanner = await axios.get(`${GET_BANNER_LENGTH}${restaurant.restaurant_id}`);
-    const myBanner = await getMyBanner.data;
-    if (myBanner.length !== 0) {
+    const {coupons} = await getMyBanner.data;
+    if (coupons.length !== 0) {
       alert(
         "You already have an active campaign. Wait for expiry to create a new one!!!"
       );
