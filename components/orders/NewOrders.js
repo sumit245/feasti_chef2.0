@@ -49,7 +49,7 @@ const Item = ({ item }) => {
     }, 1000);
     if (moment().isSameOrAfter(moment(start))) {
       axios
-        .put(ORDERS + item._id, { status: 'accepted' })
+        .put(`${ORDERS}changestatus/${item._id}`, { status: 'accepted' })
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
     }
