@@ -49,11 +49,10 @@ export const getOrder = (restaurant) => async (dispatch) => {
   const response = await axios.get(ORDERS);
   let orders = response.data;
   let neworders = orders.filter(
-    (item) => item.status === "pending" && item.restaurant === restaurant
+    (item) => item.status === "pending" && item.restaurant_id === restaurant
   );
   if (orders !== null) {
     dispatch({ type: GET_ORDER, payload: neworders });
-
   }
 };
 

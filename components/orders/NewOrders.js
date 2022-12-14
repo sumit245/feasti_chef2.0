@@ -20,6 +20,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Item = ({ item }) => {
   const { address } = item;
+  const restaurant = useSelector((state) => state.restaurant);
+  const { restaurant_id } = restaurant;
+
   const [loader, setLoader] = useState(false);
   const [current_time, setCurrentTime] = useState('');
   const [price, setPrice] = useState("")
