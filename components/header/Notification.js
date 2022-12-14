@@ -21,7 +21,7 @@ export default function Notification({ navigation }) {
     return () => {
       componentMounted = false;
     };
-  }, [orders, dispatch]);
+  }, [orders]);
 
   return (
     <TouchableOpacity
