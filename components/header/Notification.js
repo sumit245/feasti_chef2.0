@@ -11,11 +11,11 @@ export default function Notification({ navigation }) {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders);
   const restaurant = useSelector((state) => state.restaurant);
-  const { restaurant_name } = restaurant;
+  const { restaurant_id } = restaurant;
   useEffect(() => {
     let componentMounted = true;
     if (componentMounted) {
-      dispatch(getOrder(restaurant_name));
+      dispatch(getOrder(restaurant_id));
       setOrder(orders);
     }
     return () => {
