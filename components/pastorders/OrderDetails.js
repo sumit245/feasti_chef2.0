@@ -32,7 +32,7 @@ export default function OrderDetails({ route, navigation }) {
     let totalPrice = parseFloat(order.base_price).toFixed(2)
     let discv = order.promo_id !== "PROMOADMIN" ? parseFloat(order.discount).toFixed(2) : 0
     let dlvrfee = !Number.isFinite(order.delivery_fee) ? 0 : parseFloat(order.delivery_fee).toFixed(2)
-    console.log(totalPrice, discv, dlvrfee);
+    console.log(totalPrice, discv, order.delivery_fee);
     totalPrice = parseFloat(totalPrice) + parseFloat(dlvrfee) - parseFloat(discv)
     setTotal(totalPrice)
   }, [total, order])
