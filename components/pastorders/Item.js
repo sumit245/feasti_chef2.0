@@ -8,7 +8,7 @@ const Item = ({ item, index, navigation }) => {
   const [total, setTotal] = useState(0)
   useEffect(() => {
     let totalPrice = parseFloat(item.base_price).toFixed(2) - parseFloat(item.discount).toFixed(2)
-    let delivery_fee = Number.isFinite(item.delivery_fee) ? 0 : parseFloat(item.delivery_fee).toFixed(2)
+    let delivery_fee = !Number.isFinite(item.delivery_fee) ? 0 : parseFloat(item.delivery_fee).toFixed(2)
     totalPrice = parseFloat(totalPrice) + parseFloat(delivery_fee)
     setTotal(totalPrice)
   }, [total])
