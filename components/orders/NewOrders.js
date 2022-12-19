@@ -17,7 +17,7 @@ import Header from '../header/Header';
 import moment from 'moment';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import { useSelector } from 'react-redux';
 const Item = ({ item }) => {
   const { address } = item;
   const restaurant = useSelector((state) => state.restaurant);
