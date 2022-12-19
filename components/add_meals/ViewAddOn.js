@@ -62,7 +62,7 @@ export default function ViewAddOn({ add_on }) {
       )}
       renderItem={renderItem}
       data={add_on}
-      key={(item, index) => item.index}
+      key={(item, index) => 'key'+index.toString()}
     />
   );
 }
