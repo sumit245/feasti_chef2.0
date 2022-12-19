@@ -9,6 +9,9 @@ const Item = ({ item, index, navigation }) => {
   useEffect(() => {
     let totalPrice = parseFloat(item.base_price).toFixed(2) - parseFloat(item.discount).toFixed(2)
     let delivery_fee = Number.isNaN(item.delivery_fee) ? 0 : parseFloat(item.delivery_fee).toFixed(2)
+    console.log('====================================');
+    console.log(delivery_fee);
+    console.log('====================================');
     totalPrice = parseFloat(totalPrice) + parseFloat(delivery_fee)
     setTotal(totalPrice)
   }, [total])
