@@ -35,7 +35,7 @@ export default function OrderDetails({ route, navigation }) {
     console.log(totalPrice, discv, dlvrfee);
     totalPrice = parseFloat(totalPrice) + parseFloat(dlvrfee) - parseFloat(discv)
     setTotal(totalPrice)
-  }, [total])
+  }, [total, order])
 
 
 

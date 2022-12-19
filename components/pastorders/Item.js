@@ -11,7 +11,7 @@ const Item = ({ item, index, navigation }) => {
     let delivery_fee = !Number.isFinite(item.delivery_fee) ? 0 : parseFloat(item.delivery_fee).toFixed(2)
     totalPrice = parseFloat(totalPrice) + parseFloat(delivery_fee)
     setTotal(totalPrice)
-  }, [total])
+  }, [total, item])
   useEffect(() => {
     let componentMounted = true;
     let x = "";
