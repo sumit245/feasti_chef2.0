@@ -615,7 +615,7 @@ SPEC CHECKSUMS:
   ExpoModulesCore: f16da48955ea71a71e423fba8a09d00a18946214
   EXSplashScreen: c4333e4d7a89cc3f7452166527d207c725d3c2a5
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
-  FBReactNativeSpec: c9960f3d3893d31b0fb40636860dac3685074b15
+  FBReactNativeSpec: b8c933fe84010d9db26ae4101261f46f8a4df0e0
   Firebase: cd2ab85eec8170dc260186159f21072ecb679ad5
   FirebaseAnalytics: f3f8f75de34fe04141a69bb1c4bd7e24a80178e1
   FirebaseCore: ac35d680a0bf32319a59966a1478e0741536b97b
